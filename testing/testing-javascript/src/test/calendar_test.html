@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Jquery continuous calendar</title>
+<!-- basic default calendar styles -->
+<link rel="stylesheet" href="./qunit/css/qunit-1.14.0.css">
+<link rel="stylesheet" href="./jnotify/css/jNotify.jquery.css">
+<link rel="stylesheet" type="text/css" href="./jquery-continuous-calendar/css/jquery.continuousCalendar-latest-min.css" />
+<link rel="stylesheet" type="text/css" href="calendar_test.css" />
+<!-- required JavaScript files -->
+<script type="text/javascript" src="./jquery/jquery-1.10.2.min.js"></script>
+<script src="./jnotify/js/jNotify.jquery.js"></script>
+<script src="./qunit/js/qunit-1.14.0.js"></script>
+<script type="text/javascript" src="./jquery-continuous-calendar/js/jquery.continuousCalendar-latest-min.js"></script>
+<script type="text/javascript" src="calendar_test.js" charset="UTF-8"></script>
+<script src="./ajax/ajax.js"></script>
+</head>
+<body>
+	<!-- range selection is attached to fields with class startDate and endDate -->
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+	<div id="dateRange1">
+		<input type="hidden" class="startDate1" name="range_start">
+		<input type="hidden" class="endDate1" name="range_end">
+	</div>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<div id="dateRange2">
+		<input type="hidden" class="startDate2" name="range_start">
+		<input type="hidden" class="endDate2" name="range_end">
+	</div>	
+	<div id="console1"></div>	
+	<div id="console2"></div>
+</body>
+</html>

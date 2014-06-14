@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ajax Test : Return Type</title>
+<link rel="stylesheet" href="./qunit/css/qunit-1.14.0.css">
+<link rel="stylesheet" href="./jnotify/css/jNotify.jquery.css">
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+	<div id="targetDiv1">1</div>
+	<div id="targetDiv2">2</div>
+	<div id="targetDiv3">3</div>
+	<div id="targetDiv4">4</div>
+	<div id="targetDiv5">5</div>
+	<div id="targetDiv6">6</div>
+	<div id="targetDiv7">7</div>
+	<div id="targetDiv8">8</div>
+	<script src="./jquery/jquery-1.10.2.min.js"></script>
+	<script src="./json/json3.min.js"></script>
+	<script src="./ajax/ajax.js"></script>
+	<script src="./qunit/js/qunit-1.14.0.js"></script>
+	<script src="./jnotify/js/jNotify.jquery.js"></script>
+	<script type="text/javascript">
+		var $targetDiv1 = $("#targetDiv1");
+		var $targetDiv2 = $("#targetDiv2");
+		var $targetDiv3 = $("#targetDiv3");
+		var $targetDiv4 = $("#targetDiv4");
+		var $targetDiv5 = $("#targetDiv5");
+		var $targetDiv6 = $("#targetDiv6");
+		var $targetDiv7 = $("#targetDiv7");
+		var $targetDiv8 = $("#targetDiv8");
+		
+		module("before after", {
+			setup : function() {
+				ok( true, "before" );
+			},
+			teardown : function() {
+				ok( true, "after" );
+			}
+		});
+
+		test("returnType test : xml ", function() {
+			var ajaxResult = callAjax(null, 'http://www.w3schools.com/ajax/cd_catalog.xml', "#targetDiv1", 'get', 'xml');
+			ok( true, "in" );
+			setTimeout(function() {
+				test("returnType test : xml ", function() {
+					ok("1" != $targetDiv1.html(), "xml Passed!");
+				});
+			}, 500);
+		});
+		
+		test("returnType test : html ", function() {
+			callAjax(null, 'http://dev2-idm.skplanetoneid.com/im/api/TXTest/90000?params={"TRS_NO":"9080878124691765","OPN_MD":"dev","SST_CD":"90000"}', "#targetDiv2", 'get', 'html');
+			ok( true, "in" );
+			setTimeout(function() {
+				test("returnType test : html ", function() {
+					ok("2" != $targetDiv2.html(), "html Passed!");
+				});
+			}, 500);
+		});
+
+		test("returnType test : json ", function() {
+			var ajaxResult = callAjax(null, 'http://dev2-idm.skplanetoneid.com/im/api/TXTest/90000?params={"TRS_NO":"9080878124691765","OPN_MD":"dev","SST_CD":"90000"}', "#targetDiv3", 'post', 'json');
+			ok( true, "in" );
+			setTimeout(function() {
+				test("returnType test : json ", function() {
+					ok("200" == ajaxResult.status, "json Passed!");
+					
+					for(var key in ajaxResult.responseJSON){
+						$targetDiv3.append(", " + key + " : " + $(ajaxResult.responseJSON).attr(key));
+					};
+				});
+			}, 500);
+		});
+		
+		test("returnType test : jsonp ", function() {
+			callAjax(null, 'http://dev2-idm.skplanetoneid.com/im/api/TXTest/90000?params={"TRS_NO":"9080878124691765","OPN_MD":"dev","SST_CD":"90000"}', "#targetDiv4", 'get', 'jsonp');
+			ok( true, "in" );
+			setTimeout(function() {
+				test("returnType test : jsonp ", function() {
+					ok("4" != $targetDiv4.html(), "jsonp Passed!");
+				});
+			}, 500);
+		});
+		
+		test("returnType test : script ", function() {
+			var ajaxResult = callAjax(null, 'response.js', "#targetDiv5", 'get', 'script');
+			ok( true, "in" );
+			setTimeout(function() {
+				test("returnType test : script ", function() {
+			
+					ok("200" == ajaxResult.status, "script Passed!");
+					$targetDiv5.append(ajaxResult.responseText);
+								
+				});
+			}, 500);
+		});	
+		
+		test("returnType test : text ", function() {
+			callAjax(null, 'parse_data.xml', "#targetDiv6", 'get', 'text');
+			ok( true, "in" );
+			setTimeout(function() {
+				test("returnType test : text ", function() {
+					ok("6" != $targetDiv6.html(), "text Passed!");
+				});
+			}, 500);
+		});
+
+		test("add params : contentType, jsonCallback, processData, crossDomain ", function() {
+			var ajaxResult = callAjax(null, 'http://dev2-idm.skplanetoneid.com/im/api/TXTest/90000?params={"TRS_NO":"9080878124691765","OPN_MD":"dev","SST_CD":"90000"}', "#targetDiv7", 'post', 'json', 'application/x-www-form-urlencoded; charset=UTF-8', 'callback1', null);
+			ok( true, "in" );
+			setTimeout(function() {
+				test("add params : contentType, jsonCallback, processData, crossDomain ", function() {
+					ok("200" == ajaxResult.status, "contentType, jsonCallback, processData, crossDomain Passed!");
+					
+					for(var key in ajaxResult.responseJSON){
+						$targetDiv7.append(", " + key + " : " + $(ajaxResult.responseJSON).attr(key));
+					};
+				});
+				
+			}, 500);
+		});
+
+		test("statusCode : 404 ", function() {
+			var ajaxResult = callAjax(null, 'http://it.nodong.net/1', "#targetDiv8", 'post', 'html', 'application/x-www-form-urlencoded; charset=UTF-8');
+			ok( true, "in" );
+			setTimeout(function() {
+				test("statusCode : 404 ", function() {
+					ok("404" == ajaxResult.status, "404 Passed!");
+				});
+			}, 500);
+		});
+	</script>
+</body>
+</html>
