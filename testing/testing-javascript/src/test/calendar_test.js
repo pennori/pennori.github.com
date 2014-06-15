@@ -93,7 +93,7 @@ $(document).ready(function() {
 //			http://dev2-idm.skplanetoneid.com/im/api/TXTest/90000?params={"TRS_NO":"9080878124691765","OPN_MD":"dev","SST_CD":"90000"}
 //			http://313.co.kr/community/menu/list
 //			local_json
-			var result = callAjax($form, 'http://www.313.co.kr/community/menu/list', null, 'post', 'json', 'application/json; charset=utf-8');
+			var result = callAjax($form, 'local_json', null, 'post', 'json', 'application/json; charset=utf-8');
 			var ff_chr_responseText;
 
 			setTimeout(function() {
