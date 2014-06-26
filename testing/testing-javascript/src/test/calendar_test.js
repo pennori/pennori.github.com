@@ -29,7 +29,7 @@ $(document).ready(function() {
 	$("#dateRange1").on('calendarChange', function(){
 		var start = $('input.startDate').val();
 		var end = $('input.endDate').val();
-		$('#console1').html(getDateString(start.split("/")) + " | " + getDateString(end.split("/")));
+//		$('#console1').html(getDateString(start.split("/")) + " | " + getDateString(end.split("/")));
 		
 		var $form = $("<form/>", {
 			id : "form1",
@@ -86,7 +86,7 @@ $(document).ready(function() {
 					try {
 						jsonResult = $.parseJSON(result.responseText);
 					} catch (e) {
-						$("#console2").append(e);
+						$("#console2").html(e);
 					}
 					
 					equal($(jsonResult).attr("depth1"), "menu", "text depth1 is \"menu\"");
