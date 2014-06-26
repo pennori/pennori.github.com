@@ -63,8 +63,8 @@ $(document).ready(function() {
 			equal(end, $('input.endDate').val(), "end == input.endDate");
 			notEqual(start, cal1.calendarRange().start, "start != cal1.calendarRange().start");
 			notEqual(end, cal1.calendarRange().end, "end != cal1.calendarRange().end");
-			equal(typeof cal1.calendarRange().start, "object", "cal1.calendarRange().start is obejct");
-			equal(typeof cal1.calendarRange().end, "object", "cal1.calendarRange().end is obejct");
+			equal(typeof cal1.calendarRange().start, "object", "cal1.calendarRange().start is object");
+			equal(typeof cal1.calendarRange().end, "object", "cal1.calendarRange().end is object");
 			ok(0 < start.split("/").length, "start is '/' separated value");
 			ok(0 < end.split("/").length, "end is '/' separated value");
 			
