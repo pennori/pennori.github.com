@@ -1,0 +1,9 @@
+.continuousCalendarContainer .continuousCalendar .calendarScrollContent
+	{
+	overflow-y: auto;
+	width: 218px;
+	height: 218px;
+	border: 1px solid #999999;
+	position: relative;
+	background: white;
+}
