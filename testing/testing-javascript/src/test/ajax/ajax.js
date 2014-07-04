@@ -224,7 +224,7 @@ function callAjax(form, url, target, Type, returnType, contentType, jsonpCallbac
 			autoHide : true, // added in v2.0
 			TimeShown : 1000,
 			HorizontalPosition : 'center',
-			VerticalPosition : 'top''
+			VerticalPosition : 'top'
 		//	onCompleted : function(){ // added in v2.0
 		//	alert('jNofity is completed !');
 		// }
