@@ -27,8 +27,6 @@
 				equal(result.status, "200", "json Passed");
 				
 				var plans = result.responseJSON;
-				var log = "";			
-
 				for(var jsonArrayKey in plans){
 					
 					equal(typeof jsonArrayKey, "string", "1depth key type is string >> " + jsonArrayKey);
@@ -42,15 +40,11 @@
 						
 							equal(typeof key, "string", "3depth key type is string >> " + key + " : " + $(jsonString).attr(key));
 							
-// 							log += jsonArrayKey + "[" + index + "]" + " - " + key + " : " + $(jsonString).attr(key) + "\n";
-							
 						}
 						
 					}
 					
 				}
-				
-// 				alert(log);
 				
 			});
 		}, 500);
