@@ -5,16 +5,26 @@
 <link href='./fullcalendar-1.6.4/fullcalendar-custom/fullcalendar.print.css' rel='stylesheet' media='print' />
 <!-- <script src='./fullcalendar-1.6.4/lib/jquery.min.js'></script> -->
 <script type="text/javascript" src="./jquery/jquery-1.10.2.min.js"></script>
+<!-- <script src="./json/json3.min.js"></script> -->
+<script src="./ajax/ajax.js"></script>
 <script src='./fullcalendar-1.6.4/lib/jquery-ui.custom.min.js'></script>
 <script src='./fullcalendar-1.6.4/fullcalendar-custom/fullcalendar.min.js'></script>
 <script>
-
 	$(document).ready(function() {
-	
 		var date = new Date();
 		var d = date.getDate();
 		var m = date.getMonth();
 		var y = date.getFullYear();
+		
+		var result = callAjax(null, 'plan.json', null, 'get', 'json');
+// 		callAjax(null, 'response.js', "#targetDiv5", 'get', 'script');
+		var plans = result.responseJSON;
+		
+		alert(xhr.status);
+		
+		for(var key in plans){
+			alert(key + " : " + plans.attr(key));
+		}
 		
 		var calendar = $('#calendar').fullCalendar({
 			header: {
@@ -25,19 +35,19 @@
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end, allDay) {
-				var title = prompt('일정 이름:');
-				if (title) {
-					calendar.fullCalendar('renderEvent',
-						{
-							title: title,
-							start: start,
-							end: end,
-							allDay: allDay
-						},
-						true // make the event "stick"
-					);
-				}
-				calendar.fullCalendar('unselect');
+// 				var title = prompt('일정 이름:');
+// 				if (title) {
+// 					calendar.fullCalendar('renderEvent',
+// 						{
+// 							title: title,
+// 							start: start,
+// 							end: end,
+// 							allDay: allDay
+// 						},
+// 						true // make the event "stick"
+// 					);
+// 				}
+// 				calendar.fullCalendar('unselect');
 			},
 			editable: true,
 			events: [
