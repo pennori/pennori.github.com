@@ -130,10 +130,16 @@
 								title = value;
 								break;
 							case "start" :
-								start = new Date(value.substr(0,4), value.substr(4,2), value.substr(6));
+								var yyyy = value.substr(0,4);
+								var mm = (value.substr(4,2) * 1) - 1;
+								var dd = value.substr(6);
+								start = new Date(yyyy, mm, dd);
 								break;
 							case "end" :
-								end = new Date(value.substr(0,4), value.substr(4,2), value.substr(6));
+								var yyyy = value.substr(0,4);
+								var mm = (value.substr(4,2) *1) - 1;
+								var dd = value.substr(6);
+								end = new Date(yyyy, mm, dd);
 								break;
 							case "allDay" :
 								allDay = value;
