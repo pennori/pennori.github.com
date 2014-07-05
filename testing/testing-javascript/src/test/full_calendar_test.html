@@ -3,8 +3,10 @@
 <head>
 <link href='./fullcalendar-1.6.4/fullcalendar-custom/fullcalendar.css' rel='stylesheet' />
 <link href='./fullcalendar-1.6.4/fullcalendar-custom/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link rel="stylesheet" href="./qunit/css/qunit-1.14.0.css">
 <!-- <script src='./fullcalendar-1.6.4/lib/jquery.min.js'></script> -->
 <script type="text/javascript" src="./jquery/jquery-1.10.2.min.js"></script>
+<script src="./qunit/js/qunit-1.14.0.js"></script>
 <!-- <script src="./json/json3.min.js"></script> -->
 <script src="./ajax/ajax.js"></script>
 <script src='./fullcalendar-1.6.4/lib/jquery-ui.custom.min.js'></script>
@@ -16,16 +18,31 @@
 		var m = date.getMonth();
 		var y = date.getFullYear();
 		
-// 		var result = callAjax(null, 'plan.json', null, 'get', 'json');
-// 		var plans = result.responseJSON;
-// 		var log =  "";
+		var result = callAjax(null, 'plan.json', null, 'post', 'json');
+		var log =  "";
 		
-// 		for(var key in result){
-// 			log += key + " : " + $(result).attr(key) + "\n";
-// 		}
-		
-// 		alert(log);
-		
+		setTimeout(function() {
+			test("fullCalendar test : json ", function() {
+				ok("200" == result.status, "json Passed!");
+				
+				var plans = result.responseJSON;
+				var log = "";			
+
+				for(var listkey in plans){
+					
+					alert(listkey);
+					
+					for(var key in $(plans).attr(listkey)){
+						alert($(plans).attr(listkey)[key]);
+					}
+					
+				}
+				
+// 				alert(log);
+				
+			});
+		}, 500);
+				
 		var calendar = $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -120,5 +137,7 @@
 </head>
 <body>
 <div id='calendar'></div>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
 </body>
 </html>
