@@ -16,15 +16,15 @@
 		var m = date.getMonth();
 		var y = date.getFullYear();
 		
-		var result = callAjax(null, 'plan.json', null, 'get', 'json');
-// 		callAjax(null, 'response.js', "#targetDiv5", 'get', 'script');
-		var plans = result.responseJSON;
+// 		var result = callAjax(null, 'plan.json', null, 'get', 'json');
+// 		var plans = result.responseJSON;
+// 		var log =  "";
 		
-		alert(xhr.status);
+// 		for(var key in result){
+// 			log += key + " : " + $(result).attr(key) + "\n";
+// 		}
 		
-		for(var key in plans){
-			alert(key + " : " + plans.attr(key));
-		}
+// 		alert(log);
 		
 		var calendar = $('#calendar').fullCalendar({
 			header: {
