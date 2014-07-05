@@ -14,41 +14,11 @@
 <script src='./fullcalendar-1.6.4/fullcalendar-custom/fullcalendar.min.js'></script>
 <script>
 	$(document).ready(function() {
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
+// 		var date = new Date();
+// 		var d = date.getDate();
+// 		var m = date.getMonth();
+// 		var y = date.getFullYear();
 		
-		var result = callAjax(null, 'plan.json', null, 'get', 'json');
-		var log =  "";
-		
-		setTimeout(function() {
-			test("fullCalendar test : json ", function() {
-				equal(result.status, "200", "json Passed");
-				
-				var plans = result.responseJSON;
-				for(var jsonArrayKey in plans){
-					
-					equal(typeof jsonArrayKey, "string", "1depth key type is string >> " + jsonArrayKey);
-					
-					for(var index in $(plans).attr(jsonArrayKey)){
-						
-						equal(typeof index, "string", "2depth key type is string >> " + index);
-						
-						var jsonString = $(plans).attr(jsonArrayKey)[index];
-						for(var key in jsonString){
-						
-							equal(typeof key, "string", "3depth key type is string >> " + key + " : " + $(jsonString).attr(key));
-							
-						}
-						
-					}
-					
-				}
-				
-			});
-		}, 500);
-				
 		var calendar = $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -72,54 +42,124 @@
 // 				}
 // 				calendar.fullCalendar('unselect');
 			},
-			editable: false,
-			events: [
-				{
-					title: '하루종일 일정',
-					start: new Date(y, m, 1)
-				},
-				{
-					title: '장시간 체류',
-					start: new Date(y, m, d-5),
-					end: new Date(y, m, d-2)
-				},
-				{
-					id: 999,
-					title: '반복',
-					start: new Date(y, m, d-3, 16, 0),
-					allDay: false
-				},
-				{
-					id: 999,
-					title: '반복',
-					start: new Date(y, m, d+4, 16, 0),
-					allDay: false
-				},
-				{
-					title: '회의',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false
-				},
-				{
-					title: '점심약속',
-					start: new Date(y, m, d, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false
-				},
-				{
-					title: '생일파티',
-					start: new Date(y, m, d+1, 19, 0),
-					end: new Date(y, m, d+1, 22, 30),
-					allDay: false
-				},
-				{
-					title: '구글 캘린더 가기',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/'
-				}
-			]
+			editable: false
+// 			,events: [
+// 				{
+// 					title: '하루종일 일정',
+// 					start: new Date(y, m, 1)
+// 				},
+// 				{
+// 					title: '장시간 체류',
+// 					start: new Date(y, m, d-5),
+// 					end: new Date(y, m, d-2)
+// 				},
+// 				{
+// 					id: 999,
+// 					title: '반복',
+// 					start: new Date(y, m, d-3, 16, 0),
+// 					allDay: false
+// 				},
+// 				{
+// 					id: 999,
+// 					title: '반복',
+// 					start: new Date(y, m, d+4, 16, 0),
+// 					allDay: false
+// 				},
+// 				{
+// 					title: '회의',
+// 					start: new Date(y, m, d, 10, 30),
+// 					allDay: false
+// 				},
+// 				{
+// 					title: '점심약속',
+// 					start: new Date(y, m, d, 12, 0),
+// 					end: new Date(y, m, d, 14, 0),
+// 					allDay: false
+// 				},
+// 				{
+// 					title: '생일파티',
+// 					start: new Date(y, m, d+1, 19, 0),
+// 					end: new Date(y, m, d+1, 22, 30),
+// 					allDay: false
+// 				},
+// 				{
+// 					title: '구글 캘린더 가기',
+// 					start: new Date(y, m, 28),
+// 					end: new Date(y, m, 29),
+// 					url: 'http://google.com/'
+// 				}
+// 			]
 		});
+		
+		var result = callAjax(null, 'plan.json', null, 'get', 'json');
+		
+		setTimeout(function() {
+			test("fullCalendar test : json ", function() {
+				equal(result.status, "200", "json Passed");
+				
+				var planList = result.responseJSON;
+				for(var jsonArrayKey in planList){
+					
+					equal(typeof jsonArrayKey, "string", "1depth key type is string >> " + jsonArrayKey);
+					
+					for(var index in $(planList).attr(jsonArrayKey)){
+						
+						equal(typeof index, "string", "2depth key type is string >> " + index);
+						
+						var id;
+						var title;
+						var start;
+						var end;
+						var allDay;
+						var url;
+
+						var value
+						
+						var jsonString = $(planList).attr(jsonArrayKey)[index];
+						for(var key in jsonString){
+						
+							equal(typeof key, "string", "3depth key type is string >> " + key + " : " + $(jsonString).attr(key));
+							
+							value = $(jsonString).attr(key);
+							
+							switch(key){
+							case "id" :
+								id = value;
+								break;
+							case "title" :
+								title = value;
+								break;
+							case "start" :
+								start = new Date(value.substr(0,4), value.substr(4,2), value.substr(6));
+								break;
+							case "end" :
+								end = new Date(value.substr(0,4), value.substr(4,2), value.substr(6));
+								break;
+							case "allDay" :
+								allDay = value;
+								break;
+							case "url" :
+								url = value;
+								break;	
+							}
+						
+						}
+						
+						calendar.fullCalendar('renderEvent', {
+							id: id,
+							title: title,
+							start: start,
+							end: end,
+// 							url: url,
+							allDay: allDay
+						}, true);
+						
+					}
+					
+				}
+				
+			});
+		}, 500);		
 		
 	});
 
