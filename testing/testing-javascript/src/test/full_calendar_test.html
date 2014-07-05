@@ -24,23 +24,23 @@
 		
 		setTimeout(function() {
 			test("fullCalendar test : json ", function() {
-				equal(result.status, "200", "json Passed");
+				equal(result.status, "200", " json Passed");
 				
 				var plans = result.responseJSON;
 				var log = "";			
 
 				for(var jsonArrayKey in plans){
 					
-					equal(typeof jsonArrayKey, "string", "1depth key type is string >> " + jsonArrayKey);
+					equal(typeof jsonArrayKey, "string", " 1depth key type is string >> " + jsonArrayKey);
 					
 					for(var index in $(plans).attr(jsonArrayKey)){
 						
-						equal(typeof index, "string", "2depth key type is string >> " + index);
+						equal(typeof index, "string", " 2depth key type is string >> " + index);
 						
 						var jsonString = $(plans).attr(jsonArrayKey)[index];
 						for(var key in jsonString){
 						
-							equal(typeof key, "string", "3depth key type is string >> " + key + " : " + $(jsonString).attr(key));
+							equal(typeof key, "string", " 3depth key type is string >> " + key + " : " + $(jsonString).attr(key));
 							
 // 							log += jsonArrayKey + "[" + index + "]" + " - " + key + " : " + $(jsonString).attr(key) + "\n";
 							
