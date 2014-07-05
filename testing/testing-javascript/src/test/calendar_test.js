@@ -74,30 +74,30 @@ $(document).ready(function() {
 			var result = callAjax($form, 'local_json', null, 'get', 'json', 'application/json; charset=utf-8');
 			var jsonResult;
 			
-			window.open('full_calendar_test.html', '_blank');
+//			window.open('full_calendar_test.html', '_blank');
 
-//			setTimeout(function() {
-//				test("dateRange1 depth2", function(){
-//					ok("200" == result.status, "status is \"200\"");
-//					ok(4 == result.readyState, "readyState is 4");
-//
-//					try {
-//						jsonResult = $.parseJSON(result.responseText);
-//					} catch (e) {
-//						$("#console2").text("");
-//						$("#console2").append(e);
-//					}
-//					
-//					equal($(jsonResult).attr("depth1"), "menu", "text depth1 is \"menu\"");
-//					equal($(jsonResult).attr("depth2"), "list", "text depth2 is \"list\"");
-//
-//					equal($(result.responseJSON).attr("depth1"), "menu", "json depth1 is \"menu\"");
-//					equal($(result.responseJSON).attr("depth2"), "list", "json depth2 is \"list\"");
-//					
-//					calenderAlert(getDateString(start.split("/")) + " ~ " + getDateString(end.split("/")) + "<br/>" + "depth1 : " + $(jsonResult).attr("depth1") + ", depth2 : " + $(jsonResult).attr("depth2"));
-//				});
-//				
-//			}, 500);
+			setTimeout(function() {
+				test("dateRange1 depth2", function(){
+					ok("200" == result.status, "status is \"200\"");
+					ok(4 == result.readyState, "readyState is 4");
+
+					try {
+						jsonResult = $.parseJSON(result.responseText);
+					} catch (e) {
+						$("#console2").text("");
+						$("#console2").append(e);
+					}
+					
+					equal($(jsonResult).attr("depth1"), "menu", "text depth1 is \"menu\"");
+					equal($(jsonResult).attr("depth2"), "list", "text depth2 is \"list\"");
+
+					equal($(result.responseJSON).attr("depth1"), "menu", "json depth1 is \"menu\"");
+					equal($(result.responseJSON).attr("depth2"), "list", "json depth2 is \"list\"");
+					
+					calenderAlert(getDateString(start.split("/")) + " ~ " + getDateString(end.split("/")) + "<br/>" + "depth1 : " + $(jsonResult).attr("depth1") + ", depth2 : " + $(jsonResult).attr("depth2"));
+				});
+				
+			}, 500);
 			
 		});
 		
