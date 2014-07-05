@@ -21,7 +21,7 @@ $(document).ready(function() {
 		callback 		: $.noop,
 		theme 			: 'rounded', // rounded, transparent
 		customScroll 	: false,
-		isRange 		: false
+		isRange 		: true
 	});
 	
 	removeTopBottomSpan();
