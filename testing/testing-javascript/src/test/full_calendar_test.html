@@ -23,17 +23,28 @@
 		
 		setTimeout(function() {
 			test("fullCalendar test : json ", function() {
-				ok("200" == result.status, "json Passed!");
+				equal(result.status, "200", "json Passed");
 				
 				var plans = result.responseJSON;
 				var log = "";			
 
-				for(var listkey in plans){
+				for(var jsonArrayKey in plans){
 					
-					alert(listkey);
+					equal(typeof jsonArrayKey, "string", "1depth key type is string >> " + jsonArrayKey);
 					
-					for(var key in $(plans).attr(listkey)){
-						alert($(plans).attr(listkey)[key]);
+					for(var index in $(plans).attr(jsonArrayKey)){
+						
+						equal(typeof index, "string", "2depth key type is string >> " + index);
+						
+						var jsonString = $(plans).attr(jsonArrayKey)[index];
+						for(var key in jsonString){
+						
+							equal(typeof key, "string", "3depth key type is string >> " + key + " : " + $(jsonString).attr(key));
+							
+// 							log += jsonArrayKey + "[" + index + "]" + " - " + key + " : " + $(jsonString).attr(key) + "\n";
+							
+						}
+						
 					}
 					
 				}
@@ -66,7 +77,7 @@
 // 				}
 // 				calendar.fullCalendar('unselect');
 			},
-			editable: true,
+			editable: false,
 			events: [
 				{
 					title: '하루종일 일정',
@@ -125,19 +136,24 @@
 		text-align: center;
 		font-size: 14px;
 		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		}
+	}
 
 	#calendar {
 		width: 900px;
 /* 		height: 310px; */
 		margin: 0 auto;
-		}
+	}
+	
+	.qunit {
+		width: 900px;
+		text-align: left;
+	}	
 
 </style>
 </head>
 <body>
+<div id="qunit" class="qunit"></div>
+<div id="qunit-fixture" class="qunit"></div>
 <div id='calendar'></div>
-<div id="qunit"></div>
-<div id="qunit-fixture"></div>
 </body>
 </html>

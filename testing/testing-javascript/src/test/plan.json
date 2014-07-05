@@ -1,3 +1,3 @@
-{"plan":[{"id":"001","title":"보통일정","start":"20140705","end":"20140706","allDay":"false","url":"http://google.co.kr"},
-{"id":"002","title":"보통일정","start":"20140705","end":"20140706","allDay":"false","url":"http://google.co.kr"},
-{"id":"003","title":"보통일정","start":"20140705","end":"20140706","allDay":"false","url":"http://google.co.kr"}]}
+{"plan":[{"id":"001","title":"보통일정1","start":"20140705","end":"20140706","allDay":"true","url":"http://google.co.kr"},
+{"id":"002","title":"보통일정2","start":"20140706","end":"20140707","allDay":"false","url":"http://google.co.kr"},
+{"id":"003","title":"보통일정3","start":"20140707","end":"20140708","allDay":"false","url":"http://google.co.kr"}]}
