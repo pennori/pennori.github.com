@@ -4,6 +4,7 @@
 <link href='./fullcalendar-1.6.4/fullcalendar-custom/fullcalendar.css' rel='stylesheet' />
 <link href='./fullcalendar-1.6.4/fullcalendar-custom/fullcalendar.print.css' rel='stylesheet' media='print' />
 <link rel="stylesheet" href="./qunit/css/qunit-1.14.0.css">
+<link rel="stylesheet" href="./jnotify/css/jNotify.jquery.css">
 <!-- <script src='./fullcalendar-1.6.4/lib/jquery.min.js'></script> -->
 <script type="text/javascript" src="./jquery/jquery-1.10.2.min.js"></script>
 <script src="./qunit/js/qunit-1.14.0.js"></script>
@@ -28,6 +29,74 @@
 			selectable: true,
 			selectHelper: true,
 			select: function(start, end, allDay) {
+// 				viewDetail(start + " ~ " + end + " 의 일정<br/>날짜값을 전송해서 json 으로 본문내용을 가져옴");
+				var detail = "";
+				
+				var result = callAjax(null, 'plan.json', null, 'get', 'json');
+				
+				setTimeout(function(){
+						var planList = result.responseJSON;
+						for(var jsonArrayKey in planList){
+							
+							for(var index in $(planList).attr(jsonArrayKey)){
+								
+								var id;
+								var title;
+								var start;
+								var end;
+								var allDay;
+								var url;
+
+								var value;
+								
+								var jsonString = $(planList).attr(jsonArrayKey)[index];
+								for(var key in jsonString){
+								
+									value = $(jsonString).attr(key);
+									
+									switch(key){
+									case "id" :
+										id = value;
+										break;
+									case "title" :
+										title = value;
+										break;
+									case "start" :
+										var yyyy = value.substr(0,4);
+										var mm = (value.substr(4,2) * 1) - 1;
+										var dd = value.substr(6);
+										start = new Date(yyyy, mm, dd);
+										break;
+									case "end" :
+										var yyyy = value.substr(0,4);
+										var mm = (value.substr(4,2) * 1) - 1;
+										var dd = value.substr(6);
+										end = new Date(yyyy, mm, dd);
+										break;
+									case "allDay" :
+										allDay = value;
+										break;
+									case "url" :
+										url = value;
+										break;	
+									}
+																	
+								}
+
+								detail += "title : " + title + "<br/>";
+								detail += "start : " + start + "<br/>";
+								detail += "end : " + end + "<br/>";
+								detail += "===================================<br/>";
+								
+							}
+												
+						}
+	
+					viewDetail(detail);
+
+				}, 500);
+				
+				
 // 				var title = prompt('일정 이름:');
 // 				if (title) {
 // 					calendar.fullCalendar('renderEvent',
@@ -137,7 +206,7 @@
 								break;
 							case "end" :
 								var yyyy = value.substr(0,4);
-								var mm = (value.substr(4,2) *1) - 1;
+								var mm = (value.substr(4,2) * 1) - 1;
 								var dd = value.substr(6);
 								end = new Date(yyyy, mm, dd);
 								break;
@@ -160,6 +229,12 @@
 							allDay: allDay
 						}, true);
 						
+// 						for(var a in calendar){
+// 							alert(a);
+// 						}
+						
+// 						alert(calendar.fullCalendar.selectable);
+						
 					ok(true, "====================================");
 
 					}
@@ -167,10 +242,39 @@
 				}
 				
 			});
-		}, 500);		
+		}, 500);
 		
 	});
-
+	
+	function viewDetail(message) {
+		/*
+		 *	[required]
+		 *	jNotify.jquery.css
+		 *	jNotify.jquery.js
+		 *  
+		*/
+		jNotify(message, {
+			/**
+			 * [options]
+			 * autoHide / Boolean			Default : true - jNotify closed after TimeShown ms or by clicking on it
+			 * clickOverlay / Boolean 		Default : false - If false, disables closing jNotify by clicking on the background overlay.
+			 * MinWidth / Integer 			Default : 200 - In pixel, the min-width css property of the boxes.
+			 * TimeShown / Integer 			Default : 1500 - In ms, time of the boxes appearances.
+			 * ShowTimeEffect / Integer 	Default : 200 - In ms, duration of the Show effect
+			 * HideTimeEffect / Integer 	Default : 200 - In ms, duration of the Hide effect
+			 * LongTrip / Integer			Default : 15 - Length of the move effect ('top' and 'bottom' verticals positions only)
+			 * HorizontalPosition / String	Default : right - Horizontal position. Can be set to 'left', 'center', 'right'
+			 * VerticalPosition / String	Default : top - Vertical position. Can be set to 'top', 'center', 'bottom'.
+			 * ShowOverlay / Boolean		Default : true - If true, a background overlay appears behind the jNotify boxes
+			 * ColorOverlay / String		Default : #000 - Color of the overlay background (only Hex. color code)
+			 * OpacityOverlay / Integer		Default : 0.3 - Opacity CSS property of the overlay background. From 0 to 1 max.
+			 */
+			autoHide : false, // added in v2.0
+// 			MinWidth : 500,
+			HorizontalPosition : 'center',
+			VerticalPosition : 'center'
+		});
+	}
 </script>
 <style>
 
