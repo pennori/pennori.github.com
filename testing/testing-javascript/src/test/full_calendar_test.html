@@ -81,16 +81,10 @@
 										title = value;
 										break;
 									case "start" :
-										var yyyy = value.substr(0,4);
-										var mm = (value.substr(4,2) * 1) - 1;
-										var dd = value.substr(6);
-										start = new Date(yyyy, mm, dd);
+										start = convertDate(value);
 										break;
 									case "end" :
-										var yyyy = value.substr(0,4);
-										var mm = (value.substr(4,2) * 1) - 1;
-										var dd = value.substr(6);
-										end = new Date(yyyy, mm, dd);
+										end = convertDate(value);
 										break;
 									case "allDay" :
 										allDay = value;
@@ -237,16 +231,10 @@
 								title = value;
 								break;
 							case "start" :
-								var yyyy = value.substr(0,4);
-								var mm = (value.substr(4,2) * 1) - 1;
-								var dd = value.substr(6);
-								start = new Date(yyyy, mm, dd);
+								start = convertDate(value);
 								break;
 							case "end" :
-								var yyyy = value.substr(0,4);
-								var mm = (value.substr(4,2) * 1) - 1;
-								var dd = value.substr(6);
-								end = new Date(yyyy, mm, dd);
+								end = convertDate(value);
 								break;
 							case "allDay" :
 								allDay = value;
@@ -283,6 +271,17 @@
 		}, 500);
 		
 	});
+	
+	function convertDate(value) {
+		var result;
+	
+		var yyyy = value.substr(0,4);
+		var mm = (value.substr(4,2) * 1) - 1;
+		var dd = value.substr(6);
+		
+		result = new Date(yyyy, mm, dd);
+		return result;
+	}
 	
 	function viewDetail(message) {
 		/*
