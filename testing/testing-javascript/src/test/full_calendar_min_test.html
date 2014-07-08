@@ -308,7 +308,7 @@
 			 * OpacityOverlay / Integer		Default : 0.3 - Opacity CSS property of the overlay background. From 0 to 1 max.
 			 */
 			autoHide : false, // added in v2.0
-// 			MinWidth : 500,
+			MinWidth : 400,
 			HorizontalPosition : 'center',
 			VerticalPosition : 'center'
 		});
@@ -325,13 +325,30 @@
 
 	#calendar {
 		width: 310px;
- 		height: 310px;
+		width: 310px;
 		margin: 0 auto;
+	}
+	
+	.fc-event {
+	border: 1px solid #898989; /* default BORDER color #3a87ad */
+	background-color: #898989; /* default BACKGROUND color #3a87ad */
+	color: #fff;               /* default TEXT color */
+	font-size: .85em;
+	cursor: default;
 	}
 	
 	.qunit {
 /* 		width: 900px; */
 		text-align: left;
+	}
+	
+	#jNotify {
+		background-color:rgba(0,0,0,0.5);
+		border-color:#898989;
+		color:#ffffff !important;
+		text-decoration:none;
+		text-align : left;
+		opacity : 0;
 	}	
 
 </style>
