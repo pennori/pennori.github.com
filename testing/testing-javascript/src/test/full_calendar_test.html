@@ -32,7 +32,26 @@
 // 				viewDetail(start + " ~ " + end + " 의 일정<br/>날짜값을 전송해서 json 으로 본문내용을 가져옴");
 				var detail = "";
 				
-				var result = callAjax(null, 'plan.json', null, 'get', 'json');
+				var $selectForm = $("<form/>", {
+					id : "selectForm",
+					name : "selectForm"
+				});
+				
+				$selectForm.append($("<input/>", {
+					type : "hidden",
+					id : "start",
+					name : "start",
+					value : start
+				}));
+				
+				$selectForm.append($("<input/>", {
+					type : "hidden",
+					id : "end",
+					name : "end",
+					value : end
+				}));
+				
+				var result = callAjax($selectForm, 'plan.json', null, 'get', 'json');
 				
 				setTimeout(function(){
 						var planList = result.responseJSON;
@@ -160,7 +179,26 @@
 // 			]
 		});
 		
-		var result = callAjax(null, 'plan.json', null, 'get', 'json');
+		var $readyForm = $("<form/>", {
+			id : "readytForm",
+			name : "readytForm"
+		});
+		
+		$readyForm.append($("<input/>", {
+			type : "hidden",
+			id : "start",
+			name : "start",
+			value : null
+		}));
+		
+		$readyForm.append($("<input/>", {
+			type : "hidden",
+			id : "end",
+			name : "end",
+			value : null
+		}));
+		
+		var result = callAjax($readyForm, 'plan.json', null, 'get', 'json');
 		
 		setTimeout(function() {
 			test("fullCalendar test : json ", function() {
@@ -226,7 +264,7 @@
 							start: start,
 							end: end,
 // 							url: url,
-							allDay: "false" == allDay ? false : true
+							allDay: allDay
 						}, true);
 						
 // 						for(var a in calendar){
@@ -287,7 +325,6 @@
 
 	#calendar {
 		width: 900px;
-/* 		height: 310px; */
 		margin: 0 auto;
 	}
 	
