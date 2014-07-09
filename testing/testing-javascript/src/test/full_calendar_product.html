@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href='./fullcalendar-1.6.4/fullcalendar/fullcalendar.css' rel='stylesheet' />
+<link href='./fullcalendar-1.6.4/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link rel="stylesheet" href="./jnotify/css/jNotify.jquery.css">
+<script type="text/javascript" src="./jquery/jquery-1.10.2.min.js"></script>
+<script src="./jnotify/js/jNotify.jquery.js"></script>
+<script src="./ajax/ajax.js"></script>
+<script src='./fullcalendar-1.6.4/lib/jquery-ui.custom.min.js'></script>
+<script src='./fullcalendar-1.6.4/fullcalendar/fullcalendar.min.js'></script>
+<script>
+	$(document).ready(function() {
+		var calendar = $('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next,today ',
+				center: 'title',
+				right: '' // 'month,agendaWeek,agendaDay'
+			},
+			selectable: true,
+			selectHelper: true,
+			select: function(start, end, allDay) {
+				var detail = "";
+				
+				var $selectForm = $("<form/>", {
+					id : "selectForm",
+					name : "selectForm"
+				});
+				
+				$selectForm.append($("<input/>", {
+					type : "hidden",
+					id : "start",
+					name : "start",
+					value : start
+				}));
+				
+				$selectForm.append($("<input/>", {
+					type : "hidden",
+					id : "end",
+					name : "end",
+					value : end
+				}));
+				
+				var result = callAjax($selectForm, 'plan.json', null, 'get', 'json');
+				
+				setTimeout(function(){
+						var planList = result.responseJSON;
+						for(var jsonArrayKey in planList){
+							
+							for(var index in $(planList).attr(jsonArrayKey)){
+								
+								var id;
+								var title;
+								var start;
+								var end;
+								var allDay;
+								var url;
+
+								var value;
+								
+								var jsonString = $(planList).attr(jsonArrayKey)[index];
+								for(var key in jsonString){
+								
+									value = $(jsonString).attr(key);
+									
+									switch(key){
+									case "id" :
+										id = value;
+										break;
+									case "title" :
+										title = value;
+										break;
+									case "start" :
+										start = convertDate(value);
+										break;
+									case "end" :
+										end = convertDate(value);
+										break;
+									case "allDay" :
+										allDay = value;
+										break;
+									case "url" :
+										url = value;
+										break;	
+									}
+																	
+								}
+
+								detail += "title : " + title + "<br/>";
+								detail += "start : " + start + "<br/>";
+								detail += "end : " + end + "<br/>";
+								detail += "===================================<br/>";
+								
+							}
+												
+						}
+	
+					viewDetail(detail);
+
+				}, 500);
+				
+			},
+			editable: false
+		});
+		
+		var $readyForm = $("<form/>", {
+			id : "readytForm",
+			name : "readytForm"
+		});
+		
+		$readyForm.append($("<input/>", {
+			type : "hidden",
+			id : "start",
+			name : "start",
+			value : null
+		}));
+		
+		$readyForm.append($("<input/>", {
+			type : "hidden",
+			id : "end",
+			name : "end",
+			value : null
+		}));
+		
+		var result = callAjax($readyForm, 'plan.json', null, 'get', 'json');
+		
+		setTimeout(function() {
+				var planList = result.responseJSON;
+				for(var jsonArrayKey in planList){
+					
+					for(var index in $(planList).attr(jsonArrayKey)){
+						
+						var id;
+						var title;
+						var start;
+						var end;
+						var allDay;
+						var url;
+
+						var value;
+						
+						var jsonString = $(planList).attr(jsonArrayKey)[index];
+						for(var key in jsonString){
+						
+							value = $(jsonString).attr(key);
+							
+							switch(key){
+							case "id" :
+								id = value;
+								break;
+							case "title" :
+								title = value;
+								break;
+							case "start" :
+								start = convertDate(value);
+								break;
+							case "end" :
+								end = convertDate(value);
+								break;
+							case "allDay" :
+								allDay = value;
+								break;
+							case "url" :
+								url = value;
+								break;	
+							}
+						
+						}
+						
+						calendar.fullCalendar('renderEvent', {
+							id: id,
+							title: title,
+							start: start,
+							end: end,
+							allDay: allDay
+						}, true);
+						
+					}
+										
+				}
+				
+		}, 500);
+		
+	});
+	
+	function convertDate(value) {
+		var result;
+	
+		var yyyy = value.substr(0,4);
+		var mm = (value.substr(4,2) * 1) - 1;
+		var dd = value.substr(6);
+		
+		result = new Date(yyyy, mm, dd);
+		return result;
+	}
+	
+	function viewDetail(message) {
+		/*
+		 *	[required]
+		 *	jNotify.jquery.css
+		 *	jNotify.jquery.js
+		 *  
+		*/
+		jNotify(message, {
+			/**
+			 * [options]
+			 * autoHide / Boolean			Default : true - jNotify closed after TimeShown ms or by clicking on it
+			 * clickOverlay / Boolean 		Default : false - If false, disables closing jNotify by clicking on the background overlay.
+			 * MinWidth / Integer 			Default : 200 - In pixel, the min-width css property of the boxes.
+			 * TimeShown / Integer 			Default : 1500 - In ms, time of the boxes appearances.
+			 * ShowTimeEffect / Integer 	Default : 200 - In ms, duration of the Show effect
+			 * HideTimeEffect / Integer 	Default : 200 - In ms, duration of the Hide effect
+			 * LongTrip / Integer			Default : 15 - Length of the move effect ('top' and 'bottom' verticals positions only)
+			 * HorizontalPosition / String	Default : right - Horizontal position. Can be set to 'left', 'center', 'right'
+			 * VerticalPosition / String	Default : top - Vertical position. Can be set to 'top', 'center', 'bottom'.
+			 * ShowOverlay / Boolean		Default : true - If true, a background overlay appears behind the jNotify boxes
+			 * ColorOverlay / String		Default : #000 - Color of the overlay background (only Hex. color code)
+			 * OpacityOverlay / Integer		Default : 0.3 - Opacity CSS property of the overlay background. From 0 to 1 max.
+			 */
+			autoHide : false, // added in v2.0
+			MinWidth : 400,
+			OpacityOverlay : 0.1,
+			HorizontalPosition : 'center',
+			VerticalPosition : 'center'
+		});
+	}
+</script>
+<style>
+
+	body {
+		margin-top: 40px;
+		text-align: center;
+		font-size: 14px;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	}
+
+	#calendar {
+		width: 900px;
+		margin: 0 auto;
+	}
+	
+	.fc-event {
+	border: 1px solid #898989; /* default BORDER color #3a87ad */
+	background-color: #898989; /* default BACKGROUND color #3a87ad */
+	color: #fff;               /* default TEXT color */
+	font-size: .85em;
+	cursor: default;
+	}
+	
+	.qunit {
+/* 		width: 900px; */
+		text-align: left;
+	}
+	
+	#jNotify {
+		background-color:rgba(0,0,0,0.5);
+		border-color:#898989;
+		color:#ffffff !important;
+		text-decoration:none;
+		text-align : left;
+	}	
+
+</style>
+</head>
+<body>
+<div id='calendar'></div>
+</body>
+</html>
