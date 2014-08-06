@@ -11,11 +11,24 @@ public class TestMain {
 		
 		Object[] arr = testMain.getObjectArray();
 		
+		print(arr);
+	}
+
+	/**
+	 * @param arr
+	 */
+	private static void print(Object[] arr) {
 		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] instanceof Integer) {
-				System.out.print(arr[i]);
+			Object outer = arr[i];
+			
+			if (outer instanceof Integer) {
+				System.out.print(outer);
 				if (i < arr.length - 1) System.out.print(", ");	
+				continue;
 			}
+			
+			System.out.println(outer.toString());
+
 		}
 	}
 	
