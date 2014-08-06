@@ -25,9 +25,13 @@ public class TestMain {
 				System.out.print(outer);
 				if (i < arr.length - 1) System.out.print(", ");	
 				continue;
-			}
+			} 
 			
-			System.out.println(outer.toString());
+			Object[] inner = (Object[]) outer;
+			
+			for (int j = 0; j < inner.length; j++) {
+				
+			}
 
 		}
 	}
