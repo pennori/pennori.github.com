@@ -1,8 +1,5 @@
 package study.algorithm.recursion;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TestMain {
 
 	public static void main(String[] args) {
@@ -11,13 +8,13 @@ public class TestMain {
 
 		Object[] arr = testMain.getObjectArray();
 
-		print(arr);
+		testMain.print(arr);
 	}
 
 	/**
 	 * @param arr
 	 */
-	private static void print(Object[] arr) {
+	private void print(Object[] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			Object outer = arr[i];
 
@@ -39,7 +36,8 @@ public class TestMain {
 	}
 
 	Object[] getObjectArray() {
-		Object[] arr = { 1, 2, new Object[] { 1, 3, 5 }, 45, 7, 8, new Object[] { 9, 10, 13 }, 5, 2 };
+		Object[] arr = { 1, 2, new Object[] { 1, 3, 5 }, 45, 7, 8,
+				new Object[] { 9, 10, 13 }, 5, 2 };
 		return arr;
 	}
 
