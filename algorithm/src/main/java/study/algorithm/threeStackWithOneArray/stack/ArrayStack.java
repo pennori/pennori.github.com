@@ -44,7 +44,7 @@ public class ArrayStack {
 
 	public void peekAll(){
 		for (int i = this.bottom; i <= this.top; i++) {
-			System.out.println(arrayZone[i]);
+			System.out.println("remain : " + arrayZone[i]);
 		}
 	}
 	
