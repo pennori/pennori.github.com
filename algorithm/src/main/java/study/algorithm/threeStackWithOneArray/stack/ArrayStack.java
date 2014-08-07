@@ -42,7 +42,7 @@ public class ArrayStack {
 		return this.top == this.bottom + this.size - 1;
 	}
 
-	public void print(){
+	public void peekAll(){
 		for (int i = this.bottom; i <= this.top; i++) {
 			System.out.println(arrayZone[i]);
 		}

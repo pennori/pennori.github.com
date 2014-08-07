@@ -26,7 +26,7 @@ public class TestMain {
 		stack1.pop();
 		stack1.pop();
 
-		stack1.print();
+		stack1.peekAll();
 
 		ArrayStack stack2 = new ArrayStack(size, secondBottom, arrayZone);
 
@@ -37,7 +37,7 @@ public class TestMain {
 		
 		stack2.pop();
 
-		stack2.print();
+		stack2.peekAll();
 
 		ArrayStack stack3 = new ArrayStack(size, thirdBottom, arrayZone);
 
@@ -51,7 +51,7 @@ public class TestMain {
 		stack3.pop();
 		stack3.pop();
 
-		stack3.print();
+		stack3.peekAll();
 
 		for (int i = 0; i < arrayZone.length; i++) {
 			String zone = arrayZone[i];
