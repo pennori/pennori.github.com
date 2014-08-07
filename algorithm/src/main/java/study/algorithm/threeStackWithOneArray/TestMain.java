@@ -5,8 +5,17 @@ import study.algorithm.threeStackWithOneArray.stack.ArrayStack;
 public class TestMain {
 
 	public static void main(String[] args) {
+		long start = System.currentTimeMillis();
+		
 		TestMain testMain = new TestMain();
 		testMain.execute();
+		
+		long end = System.currentTimeMillis();
+		long elapsed = end - start;
+		
+		System.out.println("elapsed : " + elapsed + " ms");
+		System.out.println("start : " + start + " ms");
+		System.out.println("end : " + end + " ms");
 	}
 
 	private void execute() {
