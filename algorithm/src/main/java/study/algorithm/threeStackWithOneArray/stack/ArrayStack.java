@@ -19,6 +19,7 @@ public class ArrayStack {
 			System.out.println("stack is full");
 			return;
 		}
+		
 		this.arrayZone[++top] = item;
 		System.out.println(this.arrayZone[top] + " push complete");
 	}
@@ -28,9 +29,12 @@ public class ArrayStack {
 			System.out.println("stack is empty");
 			return null;
 		}
+		
 		String item = this.arrayZone[top--];
-		System.out.println(item + " pop complete");
 		this.arrayZone[top + 1] = null;
+		
+		System.out.println(item + " pop complete");
+		
 		return item;
 	}
 
