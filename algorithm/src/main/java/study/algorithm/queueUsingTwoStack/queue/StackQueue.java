@@ -23,16 +23,16 @@ public class StackQueue {
 			return null;
 		}
 
-		while (!this.rear.isEmpty()) {
-			this.front.push(this.rear.pop());
+		while (!rear.isEmpty()) {
+			front.push(rear.pop());
 		}
 
-		System.out.println(this.front.peek() + " pop complete");
-		return this.front.pop();
+		System.out.println(front.peek() + " pop complete");
+		return front.pop();
 	}
 
 	public boolean isEmpty() {
-		return this.rear.isEmpty() && this.front.isEmpty();
+		return rear.isEmpty() && front.isEmpty();
 	}
 
 }

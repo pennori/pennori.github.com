@@ -21,7 +21,7 @@ public class ArrayStack {
 		}
 		
 		this.arrayZone[++top] = item;
-		System.out.println(this.arrayZone[top] + " push complete");
+		System.out.println(arrayZone[top] + " push complete");
 	}
 
 	public String pop() {
@@ -30,8 +30,8 @@ public class ArrayStack {
 			return null;
 		}
 		
-		String item = this.arrayZone[top--];
-		this.arrayZone[top + 1] = null;
+		String item = arrayZone[top--];
+		arrayZone[top + 1] = null;
 		
 		System.out.println(item + " pop complete");
 		
@@ -39,15 +39,15 @@ public class ArrayStack {
 	}
 
 	public boolean isEmpty() {
-		return this.top == this.bottom - 1;
+		return top == bottom - 1;
 	}
 
 	public boolean isFull() {
-		return this.top == this.bottom + this.size - 1;
+		return top == bottom + size - 1;
 	}
 
 	public void peekAll(){
-		for (int i = this.bottom; i <= this.top; i++) {
+		for (int i = bottom; i <= top; i++) {
 			System.out.println("remain : " + arrayZone[i]);
 		}
 	}
