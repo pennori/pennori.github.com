@@ -1,6 +1,6 @@
-package study.algorithm.threeStackWithOneArray;
+package study.algorithm.threeStackUsingOneArray;
 
-import study.algorithm.threeStackWithOneArray.stack.ArrayStack;
+import study.algorithm.threeStackUsingOneArray.stack.ArrayStack;
 
 public class TestMain {
 

@@ -1,4 +1,4 @@
-package study.algorithm.threeStackWithOneArray.stack;
+package study.algorithm.threeStackUsingOneArray.stack;
 
 public class ArrayStack {
 	int size;
