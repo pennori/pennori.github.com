@@ -26,7 +26,17 @@ public class TestMain {
 		if (2 == n)	return 2;
 		if (3 == n)	return 4;
 		
-		return 0;
+		int a = 1;
+		int b = 2;
+		int c = 3;
+		
+		for (int i = 4; i < n; i++) {
+			c = a + b + c;
+			b = a + b;
+			a = c - b;
+		}
+
+		return a + b + c;
 	}
 
 }
