@@ -30,13 +30,13 @@ public class TestMain {
 		int b = 2;
 		int c = 3;
 		
+		int result = 0;
+		
 		for (int i = 4; i < n; i++) {
-			c = a + b + c;
-			b = a + b;
-			a = c - b;
+			result += i - a + i - b + i - c;
 		}
 
-		return a + b + c;
+		return result;
 	}
 
 }
