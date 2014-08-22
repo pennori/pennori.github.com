@@ -26,17 +26,20 @@ public class TestMain {
 		if (2 == n)	return 2;
 		if (3 == n)	return 4;
 		
-		int a = 1;
-		int b = 2;
-		int c = 3;
+		int[] prev = { 1, 2, 4 };
+		int current = 3;
 		
-		int result = 0;
-		
-		for (int i = 4; i < n; i++) {
-			result += i - a + i - b + i - c;
+		while(current < n){
+			
+			int result = prev[0] + prev[1] + prev[2];
+			prev[0] = prev[1];
+			prev[1] = prev[2];
+			prev[2] = result;
+			
+			current++;
 		}
 
-		return result;
+		return prev[2];
 	}
 
 }
