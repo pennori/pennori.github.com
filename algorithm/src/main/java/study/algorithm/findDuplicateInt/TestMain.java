@@ -13,7 +13,7 @@ public class TestMain {
 		System.out.println("single set : " + testMain.checkDupSingleUsingSet(array));
 		System.out.println("single prev : " + testMain.checkDupSingleUsingPrev(array));
 		System.out.println("multi set : " + testMain.checkDupMultiUsingSet(array));
-		System.out.println("multi prev : " + testMain.checkDupMultiUsingPrevArray(array));
+		testMain.checkDupMultiUsingPrevArray(array);
 
 	}
 
@@ -65,18 +65,26 @@ public class TestMain {
 		return dupSet;
 	}
 	
-	public boolean checkDupMultiUsingPrevArray(int[] array) {
-		int[] prev = new int[array.length];
+	public void checkDupMultiUsingPrevArray(int[] array) {
+		int prev = 0;
+		int[] refineArray = array.clone();
+		int[] dupArray = new int[refineArray.length];
+		int dupIndex = 0;
 		
-		for (int i = 0; i < array.length; i++) {
+		Arrays.sort(refineArray);
+		
+		for (int i = 0; i < refineArray.length; i++) {
 
-			if (0 != prev[i]) {
-				
+			if (0 != prev && prev == refineArray[i]) {
+				dupArray[dupIndex++] = refineArray[i];
 			}
+			
+			prev = refineArray[i];
 			
 		}
 		
-		return false;
+		System.out.println(Arrays.toString(dupArray));
+		
 	}
 
 }
