@@ -18,11 +18,11 @@ public class TestMain {
 
 			for (int j = i + 1; j < loop; j++) {
 
-				System.out.println(i + " / " + j);
-				System.out.println(unsort[i] + " VS " + unsort[j]);
+//				System.out.println(i + " / " + j);
+//				System.out.println(unsort[i] + " VS " + unsort[j]);
 				
 				if (unsort[i] > unsort[j]) {
-					System.out.println(unsort[i] + " <==> " + unsort[j]);
+//					System.out.println(unsort[i] + " <==> " + unsort[j]);
 					temp = unsort[i];
 					unsort[i] = unsort[j];
 					unsort[j] = temp;

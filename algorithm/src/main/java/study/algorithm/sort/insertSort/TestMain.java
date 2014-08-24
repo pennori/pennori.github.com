@@ -13,31 +13,19 @@ public class TestMain {
 		int temp = 0;
 		int round = 0;
 
-		for (int i = 0; i < unsort.length; i++) {
+		for (int i = 1; i < unsort.length; i++) {
+			temp = unsort[i];
 
-			for (int j = i + 1; j < unsort.length; j++) {
+			for (int j = i - 1; j >= 0; j--) {
 
-				for (int k = i; k >= 0; k--) {
-					
-					System.out.println(unsort[k] + " VS " + unsort[j]);
-
-					if (unsort[k] > unsort[j]) {
-						
-						System.out.println(unsort[k] + " <==> " + unsort[j]);
-						temp = unsort[k];
-						unsort[k] = unsort[j];
-						unsort[j] = temp;
-
-					} else {
-						
-						break;
-					
-					}
-
-					round++;
-
+				if (unsort[j] > temp) {
+					unsort[j + 1] = unsort[j];
+					unsort[j] = temp;
+				} else {
+					break;
 				}
 
+				round++;
 			}
 
 		}
