@@ -5,10 +5,10 @@ public class TestMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TestMain testMain = new TestMain();
-		testMain.selectionSort();
+		testMain.execute();
 	}
 
-	public void selectionSort() {
+	public void execute() {
 		int[] unsort = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 		int temp = 0;
 		int round = 0;

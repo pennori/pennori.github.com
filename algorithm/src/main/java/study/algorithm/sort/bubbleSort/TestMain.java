@@ -5,10 +5,10 @@ public class TestMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TestMain testMain = new TestMain();
-		testMain.bubbleSort();
+		testMain.execute();
 	}
 
-	public void bubbleSort() {
+	public void execute() {
 		int[] unsort = { 3, 13, 10, 2, 12, 4, 1 };
 		int temp;
 		int cnt = 0;
