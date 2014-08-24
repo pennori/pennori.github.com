@@ -9,18 +9,18 @@ public class TestMain {
 	}
 
 	public void execute() {
-		int[] unsort = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+		int[] array = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 		int temp = 0;
 		int round = 0;
 
-		for (int i = 1; i < unsort.length; i++) {
-			temp = unsort[i];
+		for (int i = 1; i < array.length; i++) {
+			temp = array[i];
 
 			for (int j = i - 1; j >= 0; j--) {
 
-				if (unsort[j] > temp) {
-					unsort[j + 1] = unsort[j];
-					unsort[j] = temp;
+				if (array[j] > temp) {
+					array[j + 1] = array[j];
+					array[j] = temp;
 				} else {
 					break;
 				}
@@ -32,8 +32,8 @@ public class TestMain {
 
 		System.out.println(round + "회 비교");
 
-		for (int i = 0; i < unsort.length; i++) {
-			System.out.print(unsort[i] + " ");
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i] + " ");
 		}
 
 	}
