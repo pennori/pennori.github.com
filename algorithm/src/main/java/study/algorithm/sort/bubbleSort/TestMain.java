@@ -9,10 +9,10 @@ public class TestMain {
 	}
 
 	public void execute() {
-		int[] unsort = { 3, 13, 10, 2, 12, 4, 1 };
+		int[] array = { 3, 13, 10, 2, 12, 4, 1 };
 		int temp;
 		int cnt = 0;
-		int loop = unsort.length - 1;
+		int loop = array.length - 1;
 		
 		for (int i = 0; i < loop; i++) {
 
@@ -21,11 +21,11 @@ public class TestMain {
 //				System.out.println(j + " / " + (j + 1));
 //				System.out.println(unsort[j] + " VS " + unsort[j + 1]);
 				
-				if (unsort[j] > unsort[j + 1]) {
+				if (array[j] > array[j + 1]) {
 //					System.out.println(unsort[j] + " <==> " + unsort[j + 1]);
-					temp = unsort[j];
-					unsort[j] = unsort[j + 1];
-					unsort[j + 1] = temp;
+					temp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = temp;
 				}
 
 				cnt++;
@@ -35,8 +35,8 @@ public class TestMain {
 
 		System.out.println(cnt + " 회 비교");
 
-		for (int i = 0; i < unsort.length; i++) {
-			System.out.print(unsort[i] + " ");
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i] + " ");
 		}
 	}
 
