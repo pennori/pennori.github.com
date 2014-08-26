@@ -9,7 +9,7 @@ public class TestMain {
 	}
 
 	public void execute() {
-
+		System.out.println(2^10);
 	}
 
 }
