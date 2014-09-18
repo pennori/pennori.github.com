@@ -1,3 +1,3 @@
 <%
-	response.write("hello1");
+	response.write("hello_locale");
 %>
