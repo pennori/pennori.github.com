@@ -1,3 +1,3 @@
 <%
-	response.write("hello");
+	response.write("hello1");
 %>
