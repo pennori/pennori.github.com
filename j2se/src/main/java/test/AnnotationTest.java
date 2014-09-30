@@ -15,8 +15,8 @@ public class AnnotationTest {
 		if (clazz.isAnnotationPresent(Switching.class)) {
 			Switching switching = clazz.getAnnotation(Switching.class);
 			
-			Method method = clazz.getMethod(switching.operation(), String.class);
-			method.invoke(testAdvice, "something");
+			Method method = clazz.getMethod(switching.operation(), String.class, String.class);
+			method.invoke(testAdvice, "main" , "process");
 		}
 
 	}
