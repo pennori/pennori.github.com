@@ -26,26 +26,26 @@ public class TestServiceImpl implements TestService, BeforeService,
 			String operation = switching.operation();
 
 			if (Handling.AROUND.getType().equals(operation)) {
-				Method before = getMethod(clazz, Handling.BEFORE.getType());
+				Method before = clazz.getMethod(Handling.BEFORE.getType(), String.class, String.class);
 				before.invoke(this, treeVO, callback);
 
 				System.out.println("around annotation main process");
 
-				Method after = getMethod(clazz, Handling.AFTER.getType());
+				Method after = clazz.getMethod(Handling.AFTER.getType(), String.class, String.class);
 				after.invoke(this, treeVO, callback);
 
 				return;
 			}
 
 			if (Handling.BEFORE.getType().equals(operation)) {
-				Method method = getMethod(clazz, operation);
+				Method method = clazz.getMethod(operation, String.class, String.class);
 				method.invoke(this, treeVO, callback);
 			}
 
 			System.out.println("before or after annotation main process");
 
 			if (Handling.AFTER.getType().equals(operation)) {
-				Method method = getMethod(clazz, operation);
+				Method method = clazz.getMethod(operation, String.class, String.class);
 				method.invoke(this, treeVO, callback);
 			}
 			
@@ -55,11 +55,6 @@ public class TestServiceImpl implements TestService, BeforeService,
 		
 		System.out.println("no annotation main process");
 		
-	}
-
-	private Method getMethod(Class<? extends TestService> clazz,
-			String methodName) throws NoSuchMethodException {
-		return clazz.getMethod(methodName, String.class, String.class);
 	}
 
 	public void before(String treeVO, String callback) {
