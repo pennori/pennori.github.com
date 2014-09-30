@@ -1,11 +1,11 @@
 package constant;
 
-public enum Operation {
+public enum Handling {
 	BEFORE("before"), AFTER("after"), AROUND("around");
 
 	private final String type;
 
-	private Operation(String type) {
+	private Handling(String type) {
 		this.type = type;
 	}
 

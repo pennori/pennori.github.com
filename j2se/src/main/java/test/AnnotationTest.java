@@ -1,24 +1,16 @@
 package test;
 
-import java.lang.reflect.Method;
-
-import advice.TestAdvice;
-import annotation.Switching;
+import service.TestService;
+import service.TestServiceImpl;
 
 public class AnnotationTest {
 
 	public static void main(String[] args) throws Exception {
+		String treeVO = "treeVO";
+		String callback = "callback";
 
-		Class<?> clazz = TestAdvice.class;
-		TestAdvice testAdvice = (TestAdvice) clazz.newInstance();
-
-		if (clazz.isAnnotationPresent(Switching.class)) {
-			Switching switching = clazz.getAnnotation(Switching.class);
-			
-			Method method = clazz.getMethod(switching.operation(), String.class, String.class);
-			method.invoke(testAdvice, "main" , "process");
-		}
-
+		TestService testService = new TestServiceImpl();
+		testService.execute(treeVO, callback);
 	}
 
 }
