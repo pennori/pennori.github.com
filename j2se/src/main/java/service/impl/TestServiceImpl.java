@@ -9,7 +9,7 @@ import service.TestService;
 import annotation.Switching;
 import constant.Handling;
 
-@Switching(operation = "around")
+@Switching(operation = "before")
 public class TestServiceImpl implements TestService, BeforeService,
 		AfterService {
 
@@ -29,7 +29,7 @@ public class TestServiceImpl implements TestService, BeforeService,
 				Method before = getMethod(clazz, Handling.BEFORE.getType());
 				before.invoke(this, treeVO, callback);
 
-				System.out.println("main process");
+				System.out.println("around annotation main process");
 
 				Method after = getMethod(clazz, Handling.AFTER.getType());
 				after.invoke(this, treeVO, callback);
@@ -42,14 +42,19 @@ public class TestServiceImpl implements TestService, BeforeService,
 				method.invoke(this, treeVO, callback);
 			}
 
-			System.out.println("main process");
+			System.out.println("before or after annotation main process");
 
 			if (Handling.AFTER.getType().equals(operation)) {
 				Method method = getMethod(clazz, operation);
 				method.invoke(this, treeVO, callback);
 			}
+			
+			return;
 
 		}
+		
+		System.out.println("no annotation main process");
+		
 	}
 
 	private Method getMethod(Class<? extends TestService> clazz,
