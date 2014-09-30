@@ -1,7 +1,7 @@
 package test;
 
 import service.TestService;
-import service.TestServiceImpl;
+import service.impl.TestServiceImpl;
 
 public class AnnotationTest {
 
