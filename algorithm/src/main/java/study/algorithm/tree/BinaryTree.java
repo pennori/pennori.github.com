@@ -35,7 +35,7 @@ public class BinaryTree {
 
 	private void preOrder(Node tempRoot) {
 		if (null != tempRoot) {
-			System.out.println(tempRoot.keyData + " ");
+			System.out.print(tempRoot.keyData + " ");
 			preOrder(tempRoot.leftChild);
 			preOrder(tempRoot.rightChild);
 		}
@@ -44,7 +44,7 @@ public class BinaryTree {
 	private void inOrder(Node tempRoot) {
 		if (null != tempRoot) {
 			inOrder(tempRoot.leftChild);
-			System.out.println(tempRoot.keyData + " ");
+			System.out.print(tempRoot.keyData + " ");
 			inOrder(tempRoot.rightChild);
 		}
 	}
@@ -53,7 +53,7 @@ public class BinaryTree {
 		if (null != tempRoot) {
 			postOrder(tempRoot.leftChild);
 			postOrder(tempRoot.rightChild);
-			System.out.println(tempRoot.keyData + " ");
+			System.out.print(tempRoot.keyData + " ");
 		}
 	}
 
