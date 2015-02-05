@@ -12,16 +12,6 @@ public class TestMain {
 		AvlTree tree = new AvlTree();
 
 		tree.insert(50);
-		tree.insert(27);
-		tree.insert(68);
-		tree.insert(12);
-		tree.insert(36);
-		tree.insert(55);
-		tree.insert(82);
-		tree.insert(7);
-		tree.insert(19);
-		tree.insert(49);
-		tree.insert(76);
 
 		while (true) {
 
