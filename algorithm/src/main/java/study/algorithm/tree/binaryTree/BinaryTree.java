@@ -1,4 +1,4 @@
-package study.algorithm.tree;
+package study.algorithm.tree.binaryTree;
 
 import java.util.Stack;
 
