@@ -11,7 +11,7 @@ public class TestMain {
 		int value;
 		AvlTree tree = new AvlTree();
 
-		tree.insert(50);
+		// tree.insert(50);
 
 		while (true) {
 
