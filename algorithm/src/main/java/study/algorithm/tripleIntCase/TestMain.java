@@ -17,6 +17,29 @@ public class TestMain {
 		System.out.println("XYZ + XY + 6PP 인 경우의 수 찾기");
 		testMain.practice02();
 		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
+
+		System.out.println();
+
+		start = System.currentTimeMillis();
+		System.out.println("식 형태로 입력 받아서 경우의 수 찾기");
+		testMain.execute("XYZ + XY = 6PP");
+		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
+	}
+
+	private void execute(String input) {
+		String refinedInput = input.replaceAll("\\s", "").toUpperCase();
+
+		String left = refinedInput.split("\\+")[0];
+		String right = refinedInput.split("\\+")[1].split("\\=")[0];
+		String equal = refinedInput.split("\\+")[1].split("\\=")[1];
+
+		System.out.println(left);
+		System.out.println(right);
+		System.out.println(equal);
+
+		System.out.println(refinedInput);
+
+
 	}
 
 	private void practice02() {
