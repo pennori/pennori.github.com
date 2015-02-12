@@ -5,7 +5,7 @@ public class TestMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TestMain testMain = new TestMain();
-		System.out.println("AA + BC = *00 인 경우 찾기");
+		System.out.println("AA + BC = *00 와 a + b = c 인 경우 찾기");
 		testMain.prepare();
 	}
 
