@@ -7,11 +7,18 @@ public class TestMain {
 		TestMain testMain = new TestMain();
 		System.out.println("AA + BC = *00 와 a + b = c 인 경우 찾기");
 		testMain.prepare();
+		System.out.println();
+		System.out.println("본 문제");
+		testMain.execute();
+	}
+
+	private void execute() {
+		// TODO Auto-generated method stub
+
 	}
 
 	private void prepare() {
 		int count = 0;
-		int loop = 0;
 
 		for (int i = 0; i < 10; i++) {
 
@@ -31,38 +38,22 @@ public class TestMain {
 						continue;
 					}
 
-					loop++;
+					String p = String.valueOf(i);
+					String q = String.valueOf(j);
+					String r = String.valueOf(k);
 
-					if (i + j == k) {
+					int pp = Integer.parseInt(p + p);
+					int qr = Integer.parseInt(q + r);
 
-						String p = String.valueOf(i);
-						String q = String.valueOf(j);
-						String r = String.valueOf(k);
+					String result = String.valueOf(pp + qr);
 
-						int pp = Integer.parseInt(p + p);
-						int qr = Integer.parseInt(q + r);
-
-						String result = String.valueOf(pp + qr);
-
-						System.out.println(pp + " + " + qr + " = " + result);
-
-						if (3 > result.length()) {
-							continue;
-						}
-
-						if (result.charAt(1) != result.charAt(2)) {
-							continue;
-						}
-
-						if ('0' != result.charAt(1) || '0' != result.charAt(2)) {
-
-						}
-
-						System.out.println("i  : " + i + ", j : " + j
-								+ ", k : " + k);
-						count++;
-
+					if (!"100".equals(result)) {
+						continue;
 					}
+
+					System.out.println(pp + " + " + qr + " = " + result);
+
+					count++;
 
 				}
 
@@ -71,7 +62,6 @@ public class TestMain {
 		}
 
 		System.out.println("경우의 수 : " + count);
-		System.out.println("수행횟수 : " + loop);
 	}
 
 }
