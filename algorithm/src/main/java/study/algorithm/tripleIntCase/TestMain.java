@@ -1,5 +1,8 @@
 package study.algorithm.tripleIntCase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TestMain {
 
 	public static void main(String[] args) {
@@ -26,18 +29,49 @@ public class TestMain {
 		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
 	}
 
-	private void execute(String input) {
-		String refinedInput = input.replaceAll("\\s", "").toUpperCase();
+	private void execute(String data) {
+		String in = data.replaceAll("\\s", "").toUpperCase();
 
-		String left = refinedInput.split("\\+")[0];
-		String right = refinedInput.split("\\+")[1].split("\\=")[0];
-		String equal = refinedInput.split("\\+")[1].split("\\=")[1];
+		String left = in.substring(0, in.indexOf("+"));
+		String right = in.substring(in.indexOf("+") + 1, in.indexOf("="));
+		String equal = in.substring(in.indexOf("=") + 1);
 
 		System.out.println(left);
 		System.out.println(right);
 		System.out.println(equal);
 
-		System.out.println(refinedInput);
+		System.out.println(in);
+
+		Map<Character, String> ruleMap = new HashMap<Character, String>();
+
+		for (int i = 0; i < in.length(); i++) {
+
+			char c = in.charAt(i);
+
+			if (ruleMap.containsKey(c)) {
+				ruleMap.put(c, ruleMap.get(c) + "_" + i);
+			} else {
+				ruleMap.put(c, String.valueOf(i));
+			}
+
+		}
+
+		char[] c = in.toCharArray();
+
+		for (int i = 0; i < c.length; i++) {
+
+			if (ruleMap.containsKey(c[i])) {
+
+				if (-1 != ruleMap.get(c[i]).indexOf("_")) {
+					System.out.println("_ 있음 " + i);
+					String[] points = ruleMap.get(c[i]).split("_");
+				}
+
+			}
+
+		}
+
+		System.out.println(ruleMap.entrySet());
 
 
 	}
