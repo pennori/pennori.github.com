@@ -13,17 +13,33 @@ public class TestMain {
 		int a = 0;
 		int b = 0;
 		int c = 0;
+		int count = 0;
 
-		while (true) {
-			a = (int) (Math.random() * 10);
-			b = (int) (Math.random() * 10);
-			c = (int) (Math.random() * 10);
+		for (int i = 0; i < 10; i++) {
 
-			if (a + b == c) {
-				System.out.println(a + " + " + b + " = " + c);
-				break;
+			for (int j = 0; j < 10; j++) {
+
+				for (int k = 0; k < 10; k++) {
+
+					if (i == j || i == k || j == k) {
+						continue;
+					}
+
+					if (i + j == k) {
+
+						System.out.println("i  : " + i + ", j : " + j
+								+ ", k : " + k);
+						count++;
+
+					}
+
+				}
+
 			}
+
 		}
+
+		System.out.println(count);
 
 		return new String[]{"1","8","9"};
 		// TODO Auto-generated method stub
