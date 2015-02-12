@@ -8,18 +8,18 @@ public class TestMain {
 
 		long start = System.currentTimeMillis();
 		System.out.println("AA + BC = 100 인 경우의 수 찾기");
-		testMain.prepare();
+		testMain.practice01();
 		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
 
 		System.out.println();
 
 		start = System.currentTimeMillis();
 		System.out.println("XYZ + XY + 6PP 인 경우의 수 찾기");
-		testMain.execute();
+		testMain.practice02();
 		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
 	}
 
-	private void execute() {
+	private void practice02() {
 		int count = 0;
 		int loop = 0;
 
@@ -84,7 +84,7 @@ public class TestMain {
 
 	}
 
-	private void prepare() {
+	private void practice01() {
 		int count = 0;
 		int loop = 0;
 
