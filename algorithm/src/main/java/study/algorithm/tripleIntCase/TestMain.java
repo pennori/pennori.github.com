@@ -5,27 +5,58 @@ public class TestMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TestMain testMain = new TestMain();
-		String[] input = testMain.prepare();
-		testMain.print(input[0], input[1], input[2]);
+		System.out.println("AA + BC = *00 인 경우 찾기");
+		testMain.prepare();
 	}
 
-	private String[] prepare() {
-		int a = 0;
-		int b = 0;
-		int c = 0;
+	private void prepare() {
 		int count = 0;
+		int loop = 0;
 
 		for (int i = 0; i < 10; i++) {
 
+			if (i == 0) {
+				continue;
+			}
+
 			for (int j = 0; j < 10; j++) {
+
+				if (j == 0) {
+					continue;
+				}
 
 				for (int k = 0; k < 10; k++) {
 
-					if (i == j || i == k || j == k) {
+					if (i == j || i == k) {
 						continue;
 					}
 
+					loop++;
+
 					if (i + j == k) {
+
+						String p = String.valueOf(i);
+						String q = String.valueOf(j);
+						String r = String.valueOf(k);
+
+						int pp = Integer.parseInt(p + p);
+						int qr = Integer.parseInt(q + r);
+
+						String result = String.valueOf(pp + qr);
+
+						System.out.println(pp + " + " + qr + " = " + result);
+
+						if (3 > result.length()) {
+							continue;
+						}
+
+						if (result.charAt(1) != result.charAt(2)) {
+							continue;
+						}
+
+						if ('0' != result.charAt(1) || '0' != result.charAt(2)) {
+
+						}
 
 						System.out.println("i  : " + i + ", j : " + j
 								+ ", k : " + k);
@@ -39,21 +70,8 @@ public class TestMain {
 
 		}
 
-		System.out.println(count);
-
-		return new String[]{"1","8","9"};
-		// TODO Auto-generated method stub
-	}
-
-	private void print(String p, String q, String r) {
-		int a = Integer.parseInt(p);
-		int b = Integer.parseInt(q);
-		int c = Integer.parseInt(r);
-		int aa = Integer.parseInt(p + p);
-		int bc = Integer.parseInt(q + r);
-		System.out.println(p + p + " + " + q + r + " = 100 => "
-				+ ((aa + bc) == 100));
-		System.out.println(p + " + " + q + " = " + r + " => " + (a + b == c));
+		System.out.println("경우의 수 : " + count);
+		System.out.println("수행횟수 : " + loop);
 	}
 
 }
