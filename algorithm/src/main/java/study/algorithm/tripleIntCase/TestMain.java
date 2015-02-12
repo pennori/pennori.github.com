@@ -5,10 +5,15 @@ public class TestMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TestMain testMain = new TestMain();
-		// System.out.println("AA + BC = 100 인 경우의 수 찾기");
-		// testMain.prepare();
-		// System.out.println();
+
 		long start = System.currentTimeMillis();
+		System.out.println("AA + BC = 100 인 경우의 수 찾기");
+		testMain.prepare();
+		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
+
+		System.out.println();
+
+		start = System.currentTimeMillis();
 		System.out.println("XYZ + XY + 6PP 인 경우의 수 찾기");
 		testMain.execute();
 		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
