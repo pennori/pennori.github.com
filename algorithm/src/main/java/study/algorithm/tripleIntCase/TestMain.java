@@ -16,27 +16,15 @@ public class TestMain {
 	}
 
 	private void execute(String data) {
-		String in = data.replaceAll("\\s", "").toUpperCase();
+		String input = data.replaceAll("\\s", "").toUpperCase();
 
-		Map<Character, String> ruleMap = new HashMap<Character, String>();
+		Map<Character, String> ruleMap = getRuleMap(input);
 
-		for (int i = 0; i < in.length(); i++) {
+		String[] strArr = new String[input.length()];
 
-			char c = in.charAt(i);
+		for (int i = 0; i < input.length(); i++) {
 
-			if (ruleMap.containsKey(c)) {
-				ruleMap.put(c, ruleMap.get(c) + "_" + i);
-			} else {
-				ruleMap.put(c, String.valueOf(i));
-			}
-
-		}
-
-		String[] strArr = new String[in.length()];
-
-		for (int i = 0; i < in.length(); i++) {
-
-			char c = in.charAt(i);
+			char c = input.charAt(i);
 
 			if ('+' == c) {
 				continue;
@@ -52,7 +40,7 @@ public class TestMain {
 
 				while (true) {
 
-					boolean isFirstDigit = i == 0 || i == in.indexOf("+") + 1;
+					boolean isFirstDigit = i == 0 || i == input.indexOf("+") + 1;
 
 					if (isFirstDigit && 0 == value) {
 						System.out.println(value);
@@ -85,12 +73,12 @@ public class TestMain {
 		StringBuffer sb = new StringBuffer();
 
 		for (int i = 0; i < strArr.length; i++) {
-			System.out.println(in.charAt(i) + " : " + strArr[i]);
+			System.out.println(input.charAt(i) + " : " + strArr[i]);
 
 			if (null != strArr[i]) {
 				sb.append(strArr[i]);
 			} else {
-				sb.append(in.charAt(i));
+				sb.append(input.charAt(i));
 			}
 
 		}
@@ -103,7 +91,25 @@ public class TestMain {
 
 		int intResult = Integer.parseInt(left) + Integer.parseInt(right);
 		System.out.println(left + " + " + right + " = " + intResult);
+		System.out.println("결과 비교 : " + misc);
 
+	}
+
+	private Map<Character, String> getRuleMap(String in) {
+		Map<Character, String> ruleMap = new HashMap<Character, String>();
+
+		for (int i = 0; i < in.length(); i++) {
+
+			char c = in.charAt(i);
+
+			if (ruleMap.containsKey(c)) {
+				ruleMap.put(c, ruleMap.get(c) + "_" + i);
+			} else {
+				ruleMap.put(c, String.valueOf(i));
+			}
+
+		}
+		return ruleMap;
 	}
 
 }
