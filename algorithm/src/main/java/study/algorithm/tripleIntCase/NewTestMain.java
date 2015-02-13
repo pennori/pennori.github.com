@@ -20,7 +20,7 @@ public class NewTestMain {
 		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
 	}
 
-	private void execute(String data) {
+	private boolean execute(String data) {
 		String input = data.replaceAll("\\s", "").toUpperCase();
 		// 문자열 중복 현황
 		Map<Character, String> dupCheckMap = getDupCheckMap(input);
@@ -62,7 +62,7 @@ public class NewTestMain {
 
 		}
 
-		System.out.println(map.entrySet());
+		// System.out.println(map.entrySet());
 
 		String[] resultArr = new String[input.length()];
 
@@ -92,7 +92,7 @@ public class NewTestMain {
 		StringBuffer sb = new StringBuffer();
 
 		for (int i = 0; i < resultArr.length; i++) {
-			System.out.println(input.charAt(i) + " : " + resultArr[i]);
+			// System.out.println(input.charAt(i) + " : " + resultArr[i]);
 
 			if (null != resultArr[i]) {
 				sb.append(resultArr[i]);
@@ -111,6 +111,8 @@ public class NewTestMain {
 		int intResult = Integer.parseInt(left) + Integer.parseInt(right);
 		System.out.println(left + " + " + right + " = " + intResult);
 		System.out.println("결과 형태 : " + misc);
+
+		return false;
 
 	}
 
