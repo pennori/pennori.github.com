@@ -18,7 +18,7 @@ public class TestMain {
 	private void execute(String data) {
 		String input = data.replaceAll("\\s", "").toUpperCase();
 
-		Map<Character, String> ruleMap = getRuleMap(input);
+		Map<Character, String> dupCheckMap = getDupCheckMap(input);
 
 		String[] strArr = new String[input.length()];
 
@@ -34,7 +34,7 @@ public class TestMain {
 				break;
 			}
 
-			if (ruleMap.containsKey(c)) {
+			if (dupCheckMap.containsKey(c)) {
 
 				int value = (int) (Math.random() * 10);
 
@@ -43,7 +43,6 @@ public class TestMain {
 					boolean isFirstDigit = i == 0 || i == input.indexOf("+") + 1;
 
 					if (isFirstDigit && 0 == value) {
-						System.out.println(value);
 						value = (int) (Math.random() * 10);
 					} else {
 						break;
@@ -51,9 +50,9 @@ public class TestMain {
 
 				}
 
-				if (-1 != ruleMap.get(c).indexOf("_")) {
+				if (-1 != dupCheckMap.get(c).indexOf("_")) {
 
-					String[] rule = ruleMap.get(c).split("_");
+					String[] rule = dupCheckMap.get(c).split("_");
 
 					for (int j = 0; j < rule.length; j++) {
 						strArr[Integer.parseInt(rule[j])] = String
@@ -91,25 +90,25 @@ public class TestMain {
 
 		int intResult = Integer.parseInt(left) + Integer.parseInt(right);
 		System.out.println(left + " + " + right + " = " + intResult);
-		System.out.println("결과 비교 : " + misc);
+		System.out.println("결과 형태 : " + misc);
 
 	}
 
-	private Map<Character, String> getRuleMap(String in) {
-		Map<Character, String> ruleMap = new HashMap<Character, String>();
+	private Map<Character, String> getDupCheckMap(String in) {
+		Map<Character, String> dupCheckMap = new HashMap<Character, String>();
 
 		for (int i = 0; i < in.length(); i++) {
 
 			char c = in.charAt(i);
 
-			if (ruleMap.containsKey(c)) {
-				ruleMap.put(c, ruleMap.get(c) + "_" + i);
+			if (dupCheckMap.containsKey(c)) {
+				dupCheckMap.put(c, dupCheckMap.get(c) + "_" + i);
 			} else {
-				ruleMap.put(c, String.valueOf(i));
+				dupCheckMap.put(c, String.valueOf(i));
 			}
 
 		}
-		return ruleMap;
+		return dupCheckMap;
 	}
 
 }
