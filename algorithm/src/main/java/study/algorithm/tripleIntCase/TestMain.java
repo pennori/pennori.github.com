@@ -36,12 +36,6 @@ public class TestMain {
 		String right = in.substring(in.indexOf("+") + 1, in.indexOf("="));
 		String equal = in.substring(in.indexOf("=") + 1);
 
-		System.out.println(left);
-		System.out.println(right);
-		System.out.println(equal);
-
-		System.out.println(in);
-
 		Map<Character, String> ruleMap = new HashMap<Character, String>();
 
 		for (int i = 0; i < in.length(); i++) {
@@ -55,8 +49,6 @@ public class TestMain {
 			}
 
 		}
-
-		System.out.println(ruleMap.entrySet());
 
 		String[] strArr = new String[in.length()];
 
