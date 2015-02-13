@@ -22,27 +22,31 @@ public class NewTestMain {
 
 	private void execute(String data) {
 		String input = data.replaceAll("\\s", "").toUpperCase();
+		// 문자열 중복 현황
 		Map<Character, String> dupCheckMap = getDupCheckMap(input);
+		// 문자형 문자열만 선별
 		Set<Character> charSet = getKeySet(input);
 		Set<Integer> intSet = new TreeSet<Integer>();
 
 		Map<Character, Integer> map = new LinkedHashMap<Character, Integer>();
 
-		Iterator<Character> it = charSet.iterator();
-		while (it.hasNext()) {
+		// 중복 배제 난수 생성
+		Iterator<Character> setIt = charSet.iterator();
+		while (setIt.hasNext()) {
 
-			char key = it.next();
+			char key = setIt.next();
 
 			while (true) {
 				int value = (int) (Math.random() * 10);
 
 				boolean isFirstDigit = 0 == input.indexOf(key)
 						|| input.indexOf(key) == (input.indexOf("+") + 1);
-
+				// 각 변의 첫 숫자는 0 이 될 수 없음
 				if (isFirstDigit && 0 == value) {
 
 					value = (int) (Math.random() * 10);
 
+					// 중복 숫자 제거
 				} else if (!intSet.add(value)) {
 
 					value = (int) (Math.random() * 10);
@@ -59,6 +63,54 @@ public class NewTestMain {
 		}
 
 		System.out.println(map.entrySet());
+
+		String[] resultArr = new String[input.length()];
+
+		Iterator<Character> mapIt = map.keySet().iterator();
+
+		// 문자 <==> 숫자 치환
+		while (mapIt.hasNext()) {
+
+			char key = mapIt.next();
+
+			if (-1 != dupCheckMap.get(key).indexOf("_")) {
+
+				String[] position = dupCheckMap.get(key).split("_");
+
+				for (int i = 0; i < position.length; i++) {
+					resultArr[Integer.parseInt(position[i])] = String
+							.valueOf(map.get(key));
+				}
+
+			} else {
+				resultArr[Integer.parseInt(dupCheckMap.get(key))] = String
+						.valueOf(map.get(key));
+			}
+
+		}
+
+		StringBuffer sb = new StringBuffer();
+
+		for (int i = 0; i < resultArr.length; i++) {
+			System.out.println(input.charAt(i) + " : " + resultArr[i]);
+
+			if (null != resultArr[i]) {
+				sb.append(resultArr[i]);
+			} else {
+				sb.append(input.charAt(i));
+			}
+
+		}
+
+		String out = sb.toString();
+
+		String left = out.substring(0, out.indexOf("+"));
+		String right = out.substring(out.indexOf("+") + 1, out.indexOf("="));
+		String misc = out.substring(out.indexOf("=") + 1);
+
+		int intResult = Integer.parseInt(left) + Integer.parseInt(right);
+		System.out.println(left + " + " + right + " = " + intResult);
+		System.out.println("결과 형태 : " + misc);
 
 	}
 
