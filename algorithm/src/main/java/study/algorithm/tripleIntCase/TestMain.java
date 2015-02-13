@@ -32,10 +32,6 @@ public class TestMain {
 	private void execute(String data) {
 		String in = data.replaceAll("\\s", "").toUpperCase();
 
-		String left = in.substring(0, in.indexOf("+"));
-		String right = in.substring(in.indexOf("+") + 1, in.indexOf("="));
-		String equal = in.substring(in.indexOf("=") + 1);
-
 		Map<Character, String> ruleMap = new HashMap<Character, String>();
 
 		for (int i = 0; i < in.length(); i++) {
@@ -70,10 +66,10 @@ public class TestMain {
 
 				if (-1 != ruleMap.get(c).indexOf("_")) {
 
-					String[] arr = ruleMap.get(c).split("_");
+					String[] rule = ruleMap.get(c).split("_");
 
-					for (int j = 0; j < arr.length; j++) {
-						strArr[Integer.parseInt(arr[j])] = String
+					for (int j = 0; j < rule.length; j++) {
+						strArr[Integer.parseInt(rule[j])] = String
 								.valueOf(value);
 					}
 
@@ -87,9 +83,26 @@ public class TestMain {
 
 		}
 
+		StringBuffer sb = new StringBuffer();
+
 		for (int i = 0; i < strArr.length; i++) {
 			System.out.println(in.charAt(i) + " : " + strArr[i]);
+
+			if (null != strArr[i]) {
+				sb.append(strArr[i]);
+			} else {
+				sb.append(in.charAt(i));
+			}
+
 		}
+
+		String out = sb.toString();
+
+		String left = out.substring(0, out.indexOf("+"));
+		String right = out.substring(out.indexOf("+") + 1, out.indexOf("="));
+		String equal = out.substring(out.indexOf("=") + 1);
+
+		System.out.println(left + " + " + right + " = " + equal);
 
 	}
 
