@@ -58,16 +58,11 @@ public class TestMain {
 
 		System.out.println(ruleMap.entrySet());
 
-		String copy = new String(in);
-		int[] intArr = new int[copy.length()];
+		String[] strArr = new String[in.length()];
 
 		for (int i = 0; i < in.length(); i++) {
 
 			char c = in.charAt(i);
-
-			if (i == 0) {
-				continue;
-			}
 
 			if ('+' == c) {
 				continue;
@@ -86,12 +81,13 @@ public class TestMain {
 					String[] arr = ruleMap.get(c).split("_");
 
 					for (int j = 0; j < arr.length; j++) {
-						intArr[Integer.parseInt(arr[j])] = value;
+						strArr[Integer.parseInt(arr[j])] = String
+								.valueOf(value);
 					}
 
 				} else {
 
-					intArr[i] = value;
+					strArr[i] = String.valueOf(value);
 
 				}
 
@@ -99,8 +95,8 @@ public class TestMain {
 
 		}
 
-		for (int i = 0; i < intArr.length; i++) {
-			System.out.println(copy.charAt(i) + " : " + intArr[i]);
+		for (int i = 0; i < strArr.length; i++) {
+			System.out.println(in.charAt(i) + " : " + strArr[i]);
 		}
 
 	}
