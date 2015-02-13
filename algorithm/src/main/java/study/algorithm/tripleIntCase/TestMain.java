@@ -56,23 +56,52 @@ public class TestMain {
 
 		}
 
-		char[] c = in.toCharArray();
+		System.out.println(ruleMap.entrySet());
 
-		for (int i = 0; i < c.length; i++) {
+		String copy = new String(in);
+		int[] intArr = new int[copy.length()];
 
-			if (ruleMap.containsKey(c[i])) {
+		for (int i = 0; i < in.length(); i++) {
 
-				if (-1 != ruleMap.get(c[i]).indexOf("_")) {
-					System.out.println("_ 있음 " + i);
-					String[] points = ruleMap.get(c[i]).split("_");
+			char c = in.charAt(i);
+
+			if (i == 0) {
+				continue;
+			}
+
+			if ('+' == c) {
+				continue;
+			}
+
+			if ('=' == c) {
+				break;
+			}
+
+			if (ruleMap.containsKey(c)) {
+
+				int value = (int) (Math.random() * 10);
+
+				if (-1 != ruleMap.get(c).indexOf("_")) {
+
+					String[] arr = ruleMap.get(c).split("_");
+
+					for (int j = 0; j < arr.length; j++) {
+						intArr[Integer.parseInt(arr[j])] = value;
+					}
+
+				} else {
+
+					intArr[i] = value;
+
 				}
 
 			}
 
 		}
 
-		System.out.println(ruleMap.entrySet());
-
+		for (int i = 0; i < intArr.length; i++) {
+			System.out.println(copy.charAt(i) + " : " + intArr[i]);
+		}
 
 	}
 
