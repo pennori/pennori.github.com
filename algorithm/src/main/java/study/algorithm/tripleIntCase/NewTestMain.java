@@ -10,6 +10,8 @@ import java.util.TreeSet;
 
 public class NewTestMain {
 
+	static int loop;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		NewTestMain testMain = new NewTestMain();
@@ -23,31 +25,14 @@ public class NewTestMain {
 	private boolean execute(String data) {
 		String input = data.replaceAll("\\s", "").toUpperCase();
 
-		String out = getResult(input);
-
-		System.out.println(out);
+		System.out.println(getResult(input));
 
 		return false;
 
 	}
 
 	private String getResult(String input) {
-		String[] resultArr = getResultArr(input, getRandomIntMap(input));
-
-		StringBuffer sb = new StringBuffer();
-
-		for (int i = 0; i < resultArr.length; i++) {
-			// System.out.println(input.charAt(i) + " : " + resultArr[i]);
-
-			if (null != resultArr[i]) {
-				sb.append(resultArr[i]);
-			} else {
-				sb.append(input.charAt(i));
-			}
-
-		}
-
-		String out = sb.toString();
+		String out = getResultStr(input, getRandomIntMap(input));
 
 		String left = out.substring(0, out.indexOf("+"));
 		String right = out.substring(out.indexOf("+") + 1, out.indexOf("="));
@@ -60,7 +45,7 @@ public class NewTestMain {
 		return out;
 	}
 
-	private String[] getResultArr(String input, Map<Character, Integer> map) {
+	private String getResultStr(String input, Map<Character, Integer> map) {
 		String[] resultArr = new String[input.length()];
 
 		// 문자열 중복 현황
@@ -88,7 +73,23 @@ public class NewTestMain {
 			}
 
 		}
-		return resultArr;
+
+		StringBuffer sb = new StringBuffer();
+
+		for (int i = 0; i < resultArr.length; i++) {
+			// System.out.println(input.charAt(i) + " : " + resultArr[i]);
+
+			if (null != resultArr[i]) {
+				sb.append(resultArr[i]);
+			} else {
+				sb.append(input.charAt(i));
+			}
+
+		}
+
+		String out = sb.toString();
+
+		return out;
 	}
 
 	private Map<Character, Integer> getRandomIntMap(String input) {
