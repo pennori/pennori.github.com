@@ -1,8 +1,10 @@
 package study.algorithm.tripleIntCase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -34,41 +36,38 @@ public class NewTestMain {
 	private String getResult(String input) {
 		Map<Character, Integer> map = new LinkedHashMap<Character, Integer>();
 		Set<Integer> intSet = new TreeSet<Integer>();
+
 		// 문자형 문자열만 선별
-		Set<Character> charSet = getUniqueLeftRightKeySet(input);
+		List<Character> charList = getUniqueLeftRightKeySet(input);
 		
 		// 중복 배제 난수 생성
-		Iterator<Character> charSetIt = charSet.iterator();
-		
-		while (charSetIt.hasNext()) {
-		
-			char key1 = charSetIt.next();
-		
+		for (int i = 0; i < charList.size(); i++) {
+			char key = charList.get(i);
+
 			// while 처리
 			while (true) {
 				int value = (int) (Math.random() * 10);
-		
-				boolean isFirstDigit = 0 == input.indexOf(key1)
-						|| input.indexOf(key1) == (input.indexOf("+") + 1);
+
+				boolean isFirstDigit = 0 == input.indexOf(key)
+						|| input.indexOf(key) == (input.indexOf("+") + 1);
 				// 각 변의 첫 숫자는 0 이 될 수 없음
 				if (isFirstDigit && 0 == value) {
-		
+
 					value = (int) (Math.random() * 10);
-		
+
 					// 중복 숫자 제거
 				} else if (!intSet.add(value)) {
-		
+
 					value = (int) (Math.random() * 10);
-		
+
 				} else {
-		
-					map.put(key1, value);
+
+					map.put(key, value);
 					break;
-		
+
 				}
-		
+
 			}
-		
 		}
 
 		String[] resultArr = new String[input.length()];
@@ -125,8 +124,8 @@ public class NewTestMain {
 		return out;
 	}
 
-	private Set<Character> getUniqueLeftRightKeySet(String input) {
-		Set<Character> set = new TreeSet<Character>();
+	private List<Character> getUniqueLeftRightKeySet(String input) {
+		List<Character> list = new ArrayList<Character>();
 		
 		for (int i = 0; i < input.length(); i++) {
 
@@ -140,10 +139,12 @@ public class NewTestMain {
 				break;
 			}
 
-			set.add(c);
+			if (!list.contains(c)) {
+				list.add(c);
+			}
 
 		}
-		return set;
+		return list;
 	}
 	
 	private Map<Character, String> getDupCheckMap(String in) {
