@@ -24,13 +24,17 @@ public class NewTestMain {
 	private boolean execute(String data) {
 		String input = data.replaceAll("\\s", "").toUpperCase();
 
-		System.out.println(getResult(input));
+		System.out.println(getResult(input, 1000));
 
 		return false;
 
 	}
 
-	private String getResult(String input) {
+	private String getResult(String input, int n) {
+		if (n <= 0) {
+			return "stop";
+		}
+
 		Map<Character, Integer> map = new LinkedHashMap<Character, Integer>();
 		Set<Integer> intSet = new TreeSet<Integer>();
 
@@ -118,7 +122,7 @@ public class NewTestMain {
 		System.out.println(left + " + " + right + " = " + intResult);
 		System.out.println("결과 형태 : " + misc);
 
-		return out;
+		return getResult(input, n - 1);
 	}
 
 	private List<Character> getUniqueLeftRightKeySet(String input) {
