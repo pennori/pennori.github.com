@@ -29,19 +29,19 @@ public class OldTestMain {
 
 		for (int i = 0; i < 10; i++) {
 
-			if (i == 0) {
-				continue;
-			}
-
 			for (int j = 0; j < 10; j++) {
 
-				if (i == j) {
-					continue;
-				}
-
-				loop++;
-
 				for (int k = 0; k < 10; k++) {
+
+					if (i == 0) {
+						continue;
+					}
+
+					if (i == j) {
+						continue;
+					}
+
+					loop++;
 
 					if (k == i || k == j) {
 						continue;
@@ -94,17 +94,17 @@ public class OldTestMain {
 
 		for (int i = 0; i < 10; i++) {
 
-			if (i == 0) {
-				continue;
-			}
-
 			for (int j = 0; j < 10; j++) {
 
-				if (j == 0) {
-					continue;
-				}
-
 				for (int k = 0; k < 10; k++) {
+
+					if (i == 0) {
+						continue;
+					}
+
+					if (j == 0) {
+						continue;
+					}
 
 					if (i == j || i == k) {
 						continue;
