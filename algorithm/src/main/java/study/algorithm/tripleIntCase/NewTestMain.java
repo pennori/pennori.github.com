@@ -12,6 +12,7 @@ import java.util.TreeSet;
 public class NewTestMain {
 
 	static int loop, count;
+	static Set<String> resultSet = new TreeSet<String>();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -19,16 +20,25 @@ public class NewTestMain {
 
 		long start = System.currentTimeMillis();
 		System.out.println("식 형태로 입력 받아서 경우의 수 찾기");
-		testMain.execute("XYZ + XY = 6PP");
-		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
-		System.out.println("수행횟수 : " + loop);
-		System.out.println("경우의 수 : " + count);
+		// testMain.execute("XYZ + XY = 6PP");
+		testMain.execute("AA + BC = 100");
+		System.out.println("소요 : " + (System.currentTimeMillis() - start)
+				+ " ms");
+		System.out.println("수행횟수 : " + loop + " 회");
+		System.out.println("경우의 수 : " + resultSet.size() + " 건");
+		System.out.println("경우의 수 상세 : ");
+		for (String result : resultSet) {
+			System.out.println(result);
+		}
+
 	}
 
 	private boolean execute(String data) {
 		String input = data.replaceAll("\\s", "").toUpperCase();
 
-		System.out.println(getResult(input, 10));
+		getResult(input, 10);
+
+		// System.out.println(getResult(input, 10));
 
 		return false;
 
@@ -131,16 +141,18 @@ public class NewTestMain {
 
 		if (result.length() != misc.length()) {
 			isValid = false;
-		}
+		} else {
 
-		for (int i = 0; i < misc.length(); i++) {
+			for (int i = 0; i < misc.length(); i++) {
 
-			char c = misc.charAt(i);
+				char c = misc.charAt(i);
 
-			if (c > 47 && c < 58) {
+				if (c > 47 && c < 58) {
 
-				if (c != result.charAt(i)) {
-					isValid = false;
+					if (c != result.charAt(i)) {
+						isValid = false;
+					}
+
 				}
 
 			}
@@ -148,13 +160,10 @@ public class NewTestMain {
 		}
 
 		if (isValid) {
-			count++;
-			System.out.println(left + " + " + right + " = "
-					+ (Integer.parseInt(left) + Integer.parseInt(right)));
+			resultSet.add(left + " + " + right + " = " + result);
 		} else {
 			n++;
 		}
-
 
 		return getResult(input, n - 1);
 	}
