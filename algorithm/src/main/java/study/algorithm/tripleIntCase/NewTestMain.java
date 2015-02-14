@@ -32,63 +32,58 @@ public class NewTestMain {
 	}
 
 	private String getResult(String input) {
-		String out = getResultStr(input, getRandomIntMap(input));
-
-		String left = out.substring(0, out.indexOf("+"));
-		String right = out.substring(out.indexOf("+") + 1, out.indexOf("="));
-		String misc = out.substring(out.indexOf("=") + 1);
-
-		int intResult = Integer.parseInt(left) + Integer.parseInt(right);
-		System.out.println(left + " + " + right + " = " + intResult);
-		System.out.println("결과 형태 : " + misc);
-		
-		return out;
-	}
-
-	private String getResultStr(String input, Map<Character, Integer> map) {
+		Map<Character, Integer> map = getRandomIntMap(input);
 		String[] resultArr = new String[input.length()];
-
+		
 		// 문자열 중복 현황
 		Map<Character, String> dupCheckMap = getDupCheckMap(input);
-
+		
 		Iterator<Character> mapIt = map.keySet().iterator();
-
+		
 		// 문자 <==> 숫자 치환
 		while (mapIt.hasNext()) {
-
+		
 			char key = mapIt.next();
-
+		
 			if (-1 != dupCheckMap.get(key).indexOf("_")) {
-
+		
 				String[] position = dupCheckMap.get(key).split("_");
-
+		
 				for (int i = 0; i < position.length; i++) {
 					resultArr[Integer.parseInt(position[i])] = String
 							.valueOf(map.get(key));
 				}
-
+		
 			} else {
 				resultArr[Integer.parseInt(dupCheckMap.get(key))] = String
 						.valueOf(map.get(key));
 			}
-
+		
 		}
-
+		
 		StringBuffer sb = new StringBuffer();
-
+		
 		for (int i = 0; i < resultArr.length; i++) {
 			// System.out.println(input.charAt(i) + " : " + resultArr[i]);
-
+		
 			if (null != resultArr[i]) {
 				sb.append(resultArr[i]);
 			} else {
 				sb.append(input.charAt(i));
 			}
-
+		
 		}
-
+		
 		String out = sb.toString();
-
+		
+		String left = out.substring(0, out.indexOf("+"));
+		String right = out.substring(out.indexOf("+") + 1, out.indexOf("="));
+		String misc = out.substring(out.indexOf("=") + 1);
+		
+		int intResult = Integer.parseInt(left) + Integer.parseInt(right);
+		System.out.println(left + " + " + right + " = " + intResult);
+		System.out.println("결과 형태 : " + misc);
+		
 		return out;
 	}
 
