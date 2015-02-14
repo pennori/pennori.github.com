@@ -98,11 +98,13 @@ public class NewTestMain {
 		Set<Character> charSet = getUniqueLeftRightKeySet(input);
 
 		// 중복 배제 난수 생성
-		Iterator<Character> setIt = charSet.iterator();
-		while (setIt.hasNext()) {
+		Iterator<Character> charSetIt = charSet.iterator();
 
-			char key = setIt.next();
+		while (charSetIt.hasNext()) {
 
+			char key = charSetIt.next();
+
+			// while 처리
 			while (true) {
 				int value = (int) (Math.random() * 10);
 
