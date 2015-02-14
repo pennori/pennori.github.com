@@ -47,6 +47,7 @@ public class NewTestMain {
 
 			// while 처리
 			while (true) {
+
 				int value = (int) (Math.random() * 10);
 
 				boolean isFirstDigit = 0 == input.indexOf(key)
