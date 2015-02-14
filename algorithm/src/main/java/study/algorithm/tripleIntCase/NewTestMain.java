@@ -12,8 +12,6 @@ import java.util.TreeSet;
 
 public class NewTestMain {
 
-	static int loop;
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		NewTestMain testMain = new NewTestMain();
