@@ -11,6 +11,8 @@ import java.util.TreeSet;
 
 public class NewTestMain {
 
+	static int loop, count;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		NewTestMain testMain = new NewTestMain();
@@ -19,12 +21,14 @@ public class NewTestMain {
 		System.out.println("식 형태로 입력 받아서 경우의 수 찾기");
 		testMain.execute("XYZ + XY = 6PP");
 		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
+		System.out.println("수행횟수 : " + loop);
+		System.out.println("경우의 수 : " + count);
 	}
 
 	private boolean execute(String data) {
 		String input = data.replaceAll("\\s", "").toUpperCase();
 
-		System.out.println(getResult(input, 1000));
+		System.out.println(getResult(input, 10));
 
 		return false;
 
@@ -34,6 +38,8 @@ public class NewTestMain {
 		if (n <= 0) {
 			return "stop";
 		}
+		
+		loop++;
 
 		Map<Character, Integer> map = new LinkedHashMap<Character, Integer>();
 		Set<Integer> intSet = new TreeSet<Integer>();
@@ -119,9 +125,36 @@ public class NewTestMain {
 		String right = out.substring(out.indexOf("+") + 1, out.indexOf("="));
 		String misc = out.substring(out.indexOf("=") + 1);
 
-		int intResult = Integer.parseInt(left) + Integer.parseInt(right);
-		System.out.println(left + " + " + right + " = " + intResult);
-		System.out.println("결과 형태 : " + misc);
+		String result = String.valueOf(Integer.parseInt(left) + Integer.parseInt(right));
+
+		boolean isValid = true;
+
+		if (result.length() != misc.length()) {
+			isValid = false;
+		}
+
+		for (int i = 0; i < misc.length(); i++) {
+
+			char c = misc.charAt(i);
+
+			if (c > 47 && c < 58) {
+
+				if (c != result.charAt(i)) {
+					isValid = false;
+				}
+
+			}
+
+		}
+
+		if (isValid) {
+			count++;
+			System.out.println(left + " + " + right + " = "
+					+ (Integer.parseInt(left) + Integer.parseInt(right)));
+		} else {
+			n++;
+		}
+
 
 		return getResult(input, n - 1);
 	}
