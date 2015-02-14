@@ -15,7 +15,7 @@ public class OldTestMain {
 		System.out.println();
 
 		start = System.currentTimeMillis();
-		System.out.println("XYZ + XY + 6PP 인 경우의 수 찾기");
+		System.out.println("XYZ + XY = 6PP 인 경우의 수 찾기");
 		testMain.practice02();
 		System.out.println("소요 (ms) : " + (System.currentTimeMillis() - start));
 
