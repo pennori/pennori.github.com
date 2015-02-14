@@ -22,13 +22,80 @@ public class NewTestMain {
 
 	private boolean execute(String data) {
 		String input = data.replaceAll("\\s", "").toUpperCase();
+
+		String out = getResult(input);
+
+		System.out.println(out);
+
+		return false;
+
+	}
+
+	private String getResult(String input) {
+		String[] resultArr = getResultArr(input, getRandomIntMap(input));
+
+		StringBuffer sb = new StringBuffer();
+
+		for (int i = 0; i < resultArr.length; i++) {
+			// System.out.println(input.charAt(i) + " : " + resultArr[i]);
+
+			if (null != resultArr[i]) {
+				sb.append(resultArr[i]);
+			} else {
+				sb.append(input.charAt(i));
+			}
+
+		}
+
+		String out = sb.toString();
+
+		String left = out.substring(0, out.indexOf("+"));
+		String right = out.substring(out.indexOf("+") + 1, out.indexOf("="));
+		String misc = out.substring(out.indexOf("=") + 1);
+
+		int intResult = Integer.parseInt(left) + Integer.parseInt(right);
+		System.out.println(left + " + " + right + " = " + intResult);
+		System.out.println("결과 형태 : " + misc);
+		
+		return out;
+	}
+
+	private String[] getResultArr(String input, Map<Character, Integer> map) {
+		String[] resultArr = new String[input.length()];
+
 		// 문자열 중복 현황
 		Map<Character, String> dupCheckMap = getDupCheckMap(input);
-		// 문자형 문자열만 선별
-		Set<Character> charSet = getKeySet(input);
-		Set<Integer> intSet = new TreeSet<Integer>();
 
+		Iterator<Character> mapIt = map.keySet().iterator();
+
+		// 문자 <==> 숫자 치환
+		while (mapIt.hasNext()) {
+
+			char key = mapIt.next();
+
+			if (-1 != dupCheckMap.get(key).indexOf("_")) {
+
+				String[] position = dupCheckMap.get(key).split("_");
+
+				for (int i = 0; i < position.length; i++) {
+					resultArr[Integer.parseInt(position[i])] = String
+							.valueOf(map.get(key));
+				}
+
+			} else {
+				resultArr[Integer.parseInt(dupCheckMap.get(key))] = String
+						.valueOf(map.get(key));
+			}
+
+		}
+		return resultArr;
+	}
+
+	private Map<Character, Integer> getRandomIntMap(String input) {
 		Map<Character, Integer> map = new LinkedHashMap<Character, Integer>();
+		Set<Integer> intSet = new TreeSet<Integer>();
+		// 문자형 문자열만 선별
+		Set<Character> charSet = getUniqueLeftRightKeySet(input);
 
 		// 중복 배제 난수 생성
 		Iterator<Character> setIt = charSet.iterator();
@@ -61,62 +128,10 @@ public class NewTestMain {
 			}
 
 		}
-
-		// System.out.println(map.entrySet());
-
-		String[] resultArr = new String[input.length()];
-
-		Iterator<Character> mapIt = map.keySet().iterator();
-
-		// 문자 <==> 숫자 치환
-		while (mapIt.hasNext()) {
-
-			char key = mapIt.next();
-
-			if (-1 != dupCheckMap.get(key).indexOf("_")) {
-
-				String[] position = dupCheckMap.get(key).split("_");
-
-				for (int i = 0; i < position.length; i++) {
-					resultArr[Integer.parseInt(position[i])] = String
-							.valueOf(map.get(key));
-				}
-
-			} else {
-				resultArr[Integer.parseInt(dupCheckMap.get(key))] = String
-						.valueOf(map.get(key));
-			}
-
-		}
-
-		StringBuffer sb = new StringBuffer();
-
-		for (int i = 0; i < resultArr.length; i++) {
-			// System.out.println(input.charAt(i) + " : " + resultArr[i]);
-
-			if (null != resultArr[i]) {
-				sb.append(resultArr[i]);
-			} else {
-				sb.append(input.charAt(i));
-			}
-
-		}
-
-		String out = sb.toString();
-
-		String left = out.substring(0, out.indexOf("+"));
-		String right = out.substring(out.indexOf("+") + 1, out.indexOf("="));
-		String misc = out.substring(out.indexOf("=") + 1);
-
-		int intResult = Integer.parseInt(left) + Integer.parseInt(right);
-		System.out.println(left + " + " + right + " = " + intResult);
-		System.out.println("결과 형태 : " + misc);
-
-		return false;
-
+		return map;
 	}
 
-	private Set<Character> getKeySet(String input) {
+	private Set<Character> getUniqueLeftRightKeySet(String input) {
 		Set<Character> set = new TreeSet<Character>();
 		
 		for (int i = 0; i < input.length(); i++) {
