@@ -70,8 +70,8 @@ public class FourthTestMain {
 			int right = Integer.parseInt(oq);
 			int result = left + right;
 
-			if (expected == result) {
-				System.out.println("찾음");
+			if (expected == result
+					&& keyList.size() - 1 == keyList.indexOf(key)) {
 				return;
 			}
 
