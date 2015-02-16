@@ -69,16 +69,14 @@ public class ThirdTestMain {
 
 			for (int j = start; j < 10; j++) {
 
-				String value = "" + j;
-
-				if (outP.contains(value) || outQ.contains(value)
-						|| outR.contains(value)) {
+				if (outP.contains("" + j) || outQ.contains("" + j)
+						|| outR.contains("" + j)) {
 					continue;
 				}
 
-				outP = replaceAll(outP, key, value);
-				outQ = replaceAll(outQ, key, value);
-				outR = replaceAll(outR, key, value);
+				outP = replaceAll(outP, key, "" + j);
+				outQ = replaceAll(outQ, key, "" + j);
+				outR = replaceAll(outR, key, "" + j);
 
 			}
 
