@@ -50,6 +50,7 @@ public class ThirdTestMain {
 				resultSet.add(outP + "+" + outQ + "=" + outR);
 				System.out.println(outP + "+" + outQ + "=" + outR);
 				return;
+
 			}
 
 		}
@@ -68,22 +69,38 @@ public class ThirdTestMain {
 
 			for (int j = start; j < 10; j++) {
 
-				String value = "" + i;
+				String value = "" + j;
 
 				if (outP.contains(value) || outQ.contains(value)
 						|| outR.contains(value)) {
 					continue;
 				}
 
-				outP = outP.replaceAll("" + key, value);
-				outQ = outQ.replaceAll("" + key, value);
-				outR = outR.replaceAll("" + key, value);
+				outP = replaceAll(outP, key, value);
+				outQ = replaceAll(outQ, key, value);
+				outR = replaceAll(outR, key, value);
 
 			}
 
 		}
 
 		calculate(outP, outQ, outQ);
+	}
+
+	private String replaceAll(String input, char key, String value) {
+		StringBuffer sb = new StringBuffer();
+
+		for (int i = 0; i < input.length(); i++) {
+
+			char compareKey = input.charAt(i);
+
+			if (compareKey == key) {
+				sb.append(value);
+			}
+
+		}
+
+		return sb.toString();
 	}
 
 	private boolean isNum(String numStr) {
