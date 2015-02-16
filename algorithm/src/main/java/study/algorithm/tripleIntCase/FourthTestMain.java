@@ -69,7 +69,6 @@ public class FourthTestMain {
 			int left = Integer.parseInt(op);
 			int right = Integer.parseInt(oq);
 			int result = left + right;
-
 			if (expected == result
 					&& keyList.size() - 1 == keyList.indexOf(key)) {
 				return;
@@ -92,7 +91,6 @@ public class FourthTestMain {
 			keyMap.put(key, i);
 
 			String nextKey = getNextKey(key);
-
 			if (null != nextKey) {
 				calculate(op, oq, or, nextKey);
 			}
