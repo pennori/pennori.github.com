@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class FourthTestMain {
 
-	List<String> list = new ArrayList<String>();
-	Map<String, Integer> map = new HashMap<String, Integer>();
+	List<String> keyList = new ArrayList<String>();
+	Map<String, Integer> keyMap = new HashMap<String, Integer>();
+	Set<String> resultSet = new TreeSet<String>();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -27,33 +30,52 @@ public class FourthTestMain {
 		initListAndMap(p + q + r);
 
 		calculate(p, q, r);
+
+		System.out.println("경우의 수 : " + resultSet.size());
+		System.out.println("경우의 수 상세 : " + resultSet);
 	}
 
 	private void initListAndMap(String input) {
-		list = new ArrayList<String>();
-		map = new HashMap<String, Integer>();
+		keyList = new ArrayList<String>();
+		keyMap = new HashMap<String, Integer>();
 
 		for (int i = 0; i < input.length(); i++) {
 
 			char key = input.charAt(i);
 
-			System.out.println(key);
-			if (list.contains("" + key) || "0123456789".contains("" + key)) {
+			if (keyList.contains("" + key) || "0123456789".contains("" + key)) {
 				continue;
 			}
 
-			list.add("" + key);
-			map.put("" + key, -1);
+			keyList.add("" + key);
+			keyMap.put("" + key, -1);
 		}
 	}
 
 	private void calculate(String p, String q, String r) {
 		// TODO Auto-generated method stub
-		System.out.println(p);
-		System.out.println(q);
-		System.out.println(r);
-		System.out.println(list);
-		System.out.println(map);
+		if (isNum(p) && isNum(q) && isNum(r)) {
+			String result = p + "+" + q + "=" + r;
+			resultSet.add(result);
+			return;
+		}
+
+		calculate(p, q, r);
+	}
+
+	private boolean isNum(String input) {
+		boolean isNum = true;
+
+		for (int i = 0; i < input.length(); i++) {
+			char c = input.charAt(i);
+
+			if (!"0123456789".contains("" + c)) {
+				isNum = false;
+			}
+
+		}
+
+		return isNum;
 	}
 
 }
