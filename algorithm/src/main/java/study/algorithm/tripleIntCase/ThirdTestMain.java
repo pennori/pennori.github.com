@@ -26,33 +26,79 @@ public class ThirdTestMain {
 	public void execute() {
 		String pqr = p + q + r;
 		strList = getUniqueStrList(pqr);
-		System.out.println(strList);
-
 		strMap = getUniqueStrMap(pqr);
-		System.out.println(strMap.entrySet());
 
 		calculate(p, q, r);
+
+		System.out.println("경우의 수 : " + resultSet.size());
+		System.out.println("경우의 수 상세 : " + resultSet);
 	}
 
-	private void calculate(String p, String q, String r) {
+	private void calculate(String inP, String inQ, String inR) {
+		String outP = inP;
+		String outQ = inQ;
+		String outR = inR;
 
+		if (isNum(outP) && isNum(outQ) && isNum(outR)) {
 
-		for (int i = 0; i < strList.size(); i++) {
+			int numR = Integer.parseInt(outR);
+			int numP = Integer.parseInt(outP);
+			int numQ = Integer.parseInt(outQ);
 
-			for (int j = 0; j < 10; j++) {
+			if (numR == numP + numQ) {
 
-				p = p.replaceAll(String.valueOf(strList.get(i)),
-						String.valueOf(i));
-				q = q.replaceAll(String.valueOf(strList.get(i)),
-						String.valueOf(i));
-				r = r.replaceAll(String.valueOf(strList.get(i)),
-						String.valueOf(i));
+				resultSet.add(outP + "+" + outQ + "=" + outR);
+				System.out.println(outP + "+" + outQ + "=" + outR);
+				return;
+			}
+
+		}
+
+		int size = strList.size();
+
+		for (int i = 0; i < size; i++) {
+
+			int start = 0;
+			char key = strList.get(i);
+			
+			if (0 == inP.indexOf(key) || 0 == inQ.indexOf(key)
+					|| 0 == inR.indexOf(key)) {
+				start = 1;
+			}
+
+			for (int j = start; j < 10; j++) {
+
+				String value = "" + i;
+
+				if (outP.contains(value) || outQ.contains(value)
+						|| outR.contains(value)) {
+					continue;
+				}
+
+				outP = outP.replaceAll("" + key, value);
+				outQ = outQ.replaceAll("" + key, value);
+				outR = outR.replaceAll("" + key, value);
 
 			}
 
 		}
 
-		calculate(p, q, r);
+		calculate(outP, outQ, outQ);
+	}
+
+	private boolean isNum(String numStr) {
+		boolean isNum = false;
+
+		for (int i = 0; i < numStr.length(); i++) {
+			char c = numStr.charAt(i);
+
+			if (c > 47 && c < 58) {
+				isNum = true;
+			}
+
+		}
+
+		return isNum;
 	}
 
 	private Map<Character, Integer> getUniqueStrMap(String input) {
@@ -89,11 +135,6 @@ public class ThirdTestMain {
 
 		}
 		return strList;
-	}
-
-	private boolean isFirstDigit(String p, String q, String r, Character key) {
-		return 0 == p.indexOf(key) || 0 == q.indexOf(key)
-				|| 0 == r.indexOf(key);
 	}
 
 }
