@@ -84,7 +84,7 @@ public class FourthTestMain {
 
 		for (int i = start; i < 10; i++) {
 
-			if (keyMap.containsValue(i) && i != keyMap.get(key)) {
+			if (!isPossible(key, i)) {
 				continue;
 			}
 
@@ -99,6 +99,23 @@ public class FourthTestMain {
 
 
 
+	}
+
+	private boolean isPossible(String key, int i) {
+		boolean isPossible = true;
+
+		int size = keyList.size();
+		for (int j = 0; j < size; j++) {
+
+			String tempKey = keyList.get(j);
+			if (key != tempKey && i == keyMap.get(tempKey)
+					&& keyList.indexOf(tempKey) < keyList.indexOf(key)) {
+				isPossible = false;
+			}
+
+		}
+
+		return isPossible;
 	}
 
 	private String getNextKey(String key) {
