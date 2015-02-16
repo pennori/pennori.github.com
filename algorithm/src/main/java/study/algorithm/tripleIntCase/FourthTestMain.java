@@ -12,38 +12,30 @@ public class FourthTestMain {
 	List<String> keyList = new ArrayList<String>();
 	Map<String, Integer> keyMap = new HashMap<String, Integer>();
 	Set<String> resultSet = new TreeSet<String>();
+	public String strP = "XYZ";
+	public String strQ = "XY";
+	public String strR = "6PP";
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FourthTestMain main = new FourthTestMain();
-		main.execute("XYZ + XY = 6PP");
+		main.execute();
 	}
 
-	public void execute(String inputStr) {
-		System.out.println("start");
-		String input = inputStr.replaceAll("\\s", "").toUpperCase();
+	public void execute() {
+		initKeyListAndMap(strP + strQ + strR);
+		calculate(strP, strQ, strR, keyList.get(0));
 
-		String p = input.substring(0, input.indexOf("+"));
-		String q = input.substring(input.indexOf("+") + 1, input.indexOf("="));
-		String r = input.substring(input.indexOf("=") + 1);
-
-		initListAndMap(p + q + r);
-
-		calculate(p, q, r);
-
-		System.out.println("경우의 수 : " + resultSet.size());
-		System.out.println("경우의 수 상세 : " + resultSet);
+		System.out.println("수행횟수 : " + resultSet.size());
+		System.out.println("수행 상세: " + resultSet);
 	}
 
-	private void initListAndMap(String input) {
-		keyList = new ArrayList<String>();
-		keyMap = new HashMap<String, Integer>();
-
+	private void initKeyListAndMap(String input) {
 		for (int i = 0; i < input.length(); i++) {
 
 			char key = input.charAt(i);
 
-			if (keyList.contains("" + key) || "0123456789".contains("" + key)) {
+			if (keyList.contains("" + key) || isNum("" + key)) {
 				continue;
 			}
 
@@ -52,30 +44,91 @@ public class FourthTestMain {
 		}
 	}
 
-	private void calculate(String p, String q, String r) {
-		// TODO Auto-generated method stub
-		if (isNum(p) && isNum(q) && isNum(r)) {
-			String result = p + "+" + q + "=" + r;
-			resultSet.add(result);
-			return;
+	private void calculate(String p, String q, String r, String key) {
+		String op = p;
+		String oq = q;
+		String or = r;
+
+		int size = keyList.size();
+		for (int i = 0; i < size; i++) {
+			String resultKey = keyList.get(i);
+			Integer resultValue = keyMap.get(resultKey);
+
+			if (-1 == resultValue) {
+				continue;
+			}
+
+			op = op.replaceAll(resultKey, "" + resultValue);
+			oq = oq.replaceAll(resultKey, "" + resultValue);
+			or = or.replaceAll(resultKey, "" + resultValue);
 		}
 
-		calculate(p, q, r);
-	}
+		if (isNum(op) && isNum(oq) && isNum(or)) {
 
-	private boolean isNum(String input) {
-		boolean isNum = true;
+			int expected = Integer.parseInt(or);
+			int left = Integer.parseInt(op);
+			int right = Integer.parseInt(oq);
+			int result = left + right;
 
-		for (int i = 0; i < input.length(); i++) {
-			char c = input.charAt(i);
-
-			if (!"0123456789".contains("" + c)) {
-				isNum = false;
+			if (expected == result) {
+				System.out.println("찾음");
+				return;
 			}
 
 		}
 
+		int start = 0;
+		if (0 == op.indexOf(key) || 0 == oq.indexOf(key)
+				|| 0 == or.indexOf(key)) {
+			start = 1;
+		}
+
+		for (int i = start; i < 10; i++) {
+
+			if (keyMap.containsValue(i) && i != keyMap.get(key)) {
+				continue;
+			}
+
+			keyMap.put(key, i);
+
+			String nextKey = getNextKey(key);
+
+			if (null != nextKey) {
+				calculate(op, oq, or, nextKey);
+			}
+
+		}
+
+
+
+	}
+
+	private String getNextKey(String key) {
+		String nextKey = null;
+
+		int size = keyList.size();
+		for (int i = 0; i < size; i++) {
+			String compareKey = keyList.get(i);
+			if (compareKey.equals(key) && i < size - 1) {
+				nextKey = keyList.get(i + 1);
+				break;
+			}
+		}
+
+		return nextKey;
+	}
+
+	private boolean isNum(String input) {
+		boolean isNum = true;
+		for (int i = 0; i < input.length(); i++) {
+			char key = input.charAt(i);
+
+			if (!"0123456789".contains("" + key)) {
+				isNum = false;
+			}
+		}
 		return isNum;
 	}
+
 
 }
