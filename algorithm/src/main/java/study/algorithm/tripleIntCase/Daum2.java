@@ -35,7 +35,6 @@ public class Daum2 {
 
 	//
 	public void changStringToInt() {
-
 		// 시작 번호 확인
 		int iStartNumber = (int) Math.pow(10, sInputString.size() - 1); // 10^(sInputStringType.size()-1);
 		String sSplitString;
@@ -151,7 +150,6 @@ public class Daum2 {
 
 			}
 		}// end for
-
 	}// end splitString
 
 	public static void main(String[] args) {
