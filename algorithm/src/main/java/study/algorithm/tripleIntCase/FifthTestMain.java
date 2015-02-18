@@ -32,9 +32,7 @@ public class FifthTestMain {
 	}
 
 	private void calculate() {
-		String p = strP;
-		String q = strQ;
-		String r = strR;
+
 		int strListSize = strList.size();
 		int startNum = (int) Math.pow(10, strListSize - 1);
 		for (int i = startNum; i < startNum * 10; i++) {
@@ -47,29 +45,37 @@ public class FifthTestMain {
 					strMap.put(key, value.substring(j, j + 1));
 				}
 
-				System.out.println(strMap.entrySet());
-
-				for (int j = 0; j < strListSize; j++) {
-					p = p.replaceAll(strList.get(j), strMap.get(strList.get(j)));
-					q = q.replaceAll(strList.get(j), strMap.get(strList.get(j)));
-					r = r.replaceAll(strList.get(j), strMap.get(strList.get(j)));
-				}
-
-				if (isNum(p) && isNum(q) && isNum(r)) {
-					int intP = Integer.parseInt(p);
-					int intQ = Integer.parseInt(q);
-					int intR = Integer.parseInt(r);
-					int sum = intP + intQ;
-
-					if (sum == intR) {
-						resultSet.add(p + "+" + q + "=" + r);
-					}
-
-				}
+				print(strListSize);
 
 			}
 		}
 
+	}
+
+	private void print(int strListSize) {
+		String p = strP;
+		String q = strQ;
+		String r = strR;
+
+		for (int j = 0; j < strListSize; j++) {
+			String resultKey = strList.get(j);
+			String resultValue = strMap.get(resultKey);
+			p = p.replaceAll(resultKey, resultValue);
+			q = q.replaceAll(resultKey, resultValue);
+			r = r.replaceAll(resultKey, resultValue);
+		}
+
+		if (isNum(p) && isNum(q) && isNum(r)) {
+			int intP = Integer.parseInt(p);
+			int intQ = Integer.parseInt(q);
+			int intR = Integer.parseInt(r);
+			int sum = intP + intQ;
+
+			if (sum == intR) {
+				resultSet.add(p + "+" + q + "=" + r);
+			}
+
+		}
 	}
 
 	private boolean isNum(String input) {
