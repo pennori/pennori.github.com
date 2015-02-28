@@ -108,21 +108,6 @@ public class FifthTestMain {
 		return false;
 	}
 
-	private void initStrMap() {
-		if (strList.isEmpty()) {
-			return;
-		}
-
-		int size = strList.size();
-		for (int i = 0; i < size; i++) {
-
-			String key = strList.get(i);
-			strMap.put(key, null);
-
-		}
-
-	}
-
 	private void initStrList() {
 		String input = strP + strQ + strR;
 		for (int i = 0; i < input.length(); i++) {
