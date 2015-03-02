@@ -12,7 +12,6 @@ public class SixthTestMain {
 
 	List<String> strList = new ArrayList<String>();
 	Map<String, String> strMap;
-	Set<String> uniqueSet = new HashSet<String>();
 	Set<String> resultSet = new HashSet<String>();
 
 	String strP = "XYZ";
