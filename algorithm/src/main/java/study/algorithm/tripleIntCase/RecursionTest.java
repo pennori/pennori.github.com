@@ -16,23 +16,47 @@ public class RecursionTest {
 
 	private void excute() {
 		// TODO Auto-generated method stub
-		list.add(1);
-		list.add(2);
-		list.add(3);
+		int depth = 3;
+		int[] index = new int[depth];
 
-		calc(list.get(0));
-		System.out.println(count);
+		for (int i = 0; i < index.length; i++) {
+			index[i] = 0;
+		}
+
+		int[] max = new int[depth];
+
+		for (int i = 0; i < max.length; i++) {
+			max[i] = 10;
+		}
+
+		doLoop(index, max, 0);
 	}
 
-	private void calc(Integer num) {
-		for (int i = 0; i < 10; i++) {
-			System.out.println(num);
-			if (list.size() - 1 > list.indexOf(num)) {
-				calc(list.get(list.indexOf(num) + 1));
+	private void doLoop(int[] index, int[] max, int level) {
+		if (index.length == level) {
+			print(index);
+		} else {
+			for (index[level] = 0; index[level] < max[level]; index[level]++) {
+				doLoop(index, max, level + 1);
 			}
 		}
 
 	}
+
+	private void print(int[] index) {
+		String str = "";
+		for (int i = 0; i < index.length; i++) {
+
+			str += index[i];
+			if (i < index.length - 1) {
+				str += ", ";
+			}
+
+		}
+		System.out.println(str);
+	}
+
+
 
 
 
