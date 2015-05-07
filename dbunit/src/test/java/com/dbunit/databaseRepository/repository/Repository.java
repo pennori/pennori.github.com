@@ -1,6 +1,6 @@
 package com.dbunit.databaseRepository.repository;
 
-import com.dbunit.databaseRepository.entity.Seller;
+import vo.Seller;
 
 
 public interface Repository {

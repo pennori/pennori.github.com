@@ -14,7 +14,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dbunit.databaseRepository.entity.Seller;
+import vo.Seller;
+
 import com.dbunit.databaseRepository.repository.DatabaseRepository;
 import com.dbunit.databaseRepository.repository.Repository;
 

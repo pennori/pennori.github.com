@@ -1,4 +1,4 @@
-package com.dbunit.databaseRepository.entity;
+package vo;
 
 public class Seller {
 

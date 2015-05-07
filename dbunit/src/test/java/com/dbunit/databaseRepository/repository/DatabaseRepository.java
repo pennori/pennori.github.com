@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.dbunit.databaseRepository.entity.Seller;
+import vo.Seller;
 
 public class DatabaseRepository implements Repository {
 
