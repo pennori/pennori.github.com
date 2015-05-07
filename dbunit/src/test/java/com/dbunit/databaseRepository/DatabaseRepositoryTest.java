@@ -31,8 +31,8 @@ public class DatabaseRepositoryTest {
         databaseTester = new JdbcDatabaseTester(driver, protocol + dbName);
 
         try {
-            String xmlClasspath = "/com/dbunit/databaseRepository/dataset/seller.xml";
-            URL url = this.getClass().getResource(xmlClasspath);
+            String datasetClasspath = "/com/dbunit/databaseRepository/dataset/seller.xml";
+            URL url = this.getClass().getResource(datasetClasspath);
 
             IDataSet dataSet = new FlatXmlDataSetBuilder().build(new File(url.toURI()));
             DatabaseOperation.CLEAN_INSERT.execute(databaseTester.getConnection(), dataSet);
