@@ -3,6 +3,7 @@ package com.dbunit.databaseRepository;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.net.URL;
 
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
@@ -30,10 +31,10 @@ public class DatabaseRepositoryTest {
         databaseTester = new JdbcDatabaseTester(driver, protocol + dbName);
 
         try {
-            File file =
-                    new File("src/test/resources/com/dbunit/databaseRepository/dataset/seller.xml");
+            String xmlClasspath = "/com/dbunit/databaseRepository/dataset/seller.xml";
+            URL url = this.getClass().getResource(xmlClasspath);
 
-            IDataSet dataSet = new FlatXmlDataSetBuilder().build(file);
+            IDataSet dataSet = new FlatXmlDataSetBuilder().build(new File(url.toURI()));
             DatabaseOperation.CLEAN_INSERT.execute(databaseTester.getConnection(), dataSet);
         } catch (Exception e) {
             e.printStackTrace();
