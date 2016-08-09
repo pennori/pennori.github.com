@@ -1,4 +1,4 @@
-package unknown.practice;
+package study.algorithm.practice;
 
 import static org.junit.Assert.*;
 

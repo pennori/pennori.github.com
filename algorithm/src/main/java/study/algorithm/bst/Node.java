@@ -1,4 +1,4 @@
-package unknown.bst;
+package study.algorithm.bst;
 
 public class Node {
 	private int data;

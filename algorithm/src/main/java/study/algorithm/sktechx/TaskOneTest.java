@@ -1,4 +1,4 @@
-package codility.sktechx;
+package study.algorithm.sktechx;
 
 import org.junit.Assert;
 import org.junit.Test;

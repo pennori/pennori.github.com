@@ -1,4 +1,8 @@
-package unknown.bst;
+package study.algorithm.bst;
+
+import java.util.Stack;
+
+import study.algorithm.bst.Node;
 
 public class BinarySearchTree {
 	private Node root;
@@ -42,7 +46,7 @@ public class BinarySearchTree {
 	
 	public void preOrder(Node tempRoot){
 		if (null != tempRoot) {
-			System.out.println(tempRoot.getData() + " ");
+			System.out.print(tempRoot.getData() + " ");
 			preOrder(tempRoot.getLeftChild());
 			preOrder(tempRoot.getRightChild());
 		}
@@ -50,20 +54,45 @@ public class BinarySearchTree {
 	
 	public void inOrder(Node tempRoot){
 		if (null != tempRoot) {
-			preOrder(tempRoot.getLeftChild());
-			System.out.println(tempRoot.getData() + " ");
-			preOrder(tempRoot.getRightChild());
+			inOrder(tempRoot.getLeftChild());
+			System.out.print(tempRoot.getData() + " ");
+			inOrder(tempRoot.getRightChild());
 		}
 	}
 	
 	public void postOrder(Node tempRoot){
 		if (null != tempRoot) {
-			preOrder(tempRoot.getLeftChild());
-			preOrder(tempRoot.getRightChild());
-			System.out.println(tempRoot.getData() + " ");
+			postOrder(tempRoot.getLeftChild());
+			postOrder(tempRoot.getRightChild());
+			System.out.print(tempRoot.getData() + " ");
 		}
 	}
 	
+	public Node find(int key) {
+		Node current = root;
+		
+		while (key != current.getData()) {
+			
+			if (key < current.getData()) {
+				
+				current = current.getLeftChild();
+				
+			} else {
+				
+				current = current.getRightChild();
+				
+			}
+	
+			if (null == current) {
+				return null;
+			}
+			
+		}
+		
+		return current;
+		
+	}
+
 	public void insert(int key){
 		Node insertNode = new Node(key);
 		
@@ -183,6 +212,62 @@ public class BinarySearchTree {
 			candidate.setRightChild(deleteNode.getRightChild());
 		}
 		return candidate;
+	}
+	
+	public void display() {
+		Stack globalStack = new Stack();
+		globalStack.push(root);
+		int blank = 32;
+		boolean isRowEmpty = false;
+
+		while (isRowEmpty == false) {
+
+			Stack localStack = new Stack();
+			isRowEmpty = true;
+
+			for (int i = 0; i < blank; i++) {
+				System.out.print(' ');
+			}
+
+			while (globalStack.isEmpty() == false) {
+
+				Node temp = (Node) globalStack.pop();
+
+				if (temp != null) {
+
+					System.out.print(temp.getData());
+					localStack.push(temp.getLeftChild());
+					localStack.push(temp.getRightChild());
+
+					if (temp.getLeftChild() != null || temp.getRightChild() != null) {
+						isRowEmpty = false;
+					}
+
+				} else {
+					
+					System.out.print("**");
+					localStack.push(null);
+					localStack.push(null);
+					
+				}
+				
+				for (int i = 0; i < blank * 2 - 2; i++) {
+					System.out.print(' ');
+				}
+
+			}
+
+			System.out.println();
+			blank = blank / 2;
+
+			while (localStack.isEmpty() == false) {
+				globalStack.push(localStack.pop());
+			}
+
+		}
+
+		System.out.println();
+
 	}
 
 }

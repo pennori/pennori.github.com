@@ -1,4 +1,4 @@
-package unknown.naver;
+package study.algorithm.naver;
 
 import org.junit.Assert;
 import org.junit.Test;
