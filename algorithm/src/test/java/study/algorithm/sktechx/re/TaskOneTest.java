@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TaskOne2ndTest {
+public class TaskOneTest {
 
 	@Test
 	public void test() {
