@@ -1,4 +1,4 @@
-package study.algorithm.sktechx;
+package study.algorithm.sktechx.re;
 
 import java.util.regex.Pattern;
 
