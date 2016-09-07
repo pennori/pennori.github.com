@@ -13,16 +13,12 @@ public class TestMain {
 		int temp;
 		int cnt = 0;
 		int loop = array.length - 1;
-		
+
 		for (int i = 0; i < loop; i++) {
 
 			for (int j = 0; j < loop - i; j++) {
 
-//				System.out.println(j + " / " + (j + 1));
-//				System.out.println(unsort[j] + " VS " + unsort[j + 1]);
-				
 				if (array[j] > array[j + 1]) {
-//					System.out.println(unsort[j] + " <==> " + unsort[j + 1]);
 					temp = array[j];
 					array[j] = array[j + 1];
 					array[j + 1] = temp;
