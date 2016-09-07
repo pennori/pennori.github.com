@@ -47,7 +47,6 @@ public class QuickSortTest {
 			}
 
 			swap(a, i, right);
-
 			quickSort(a, left, i - 1);
 
 			quickSort(a, left + 1, right);

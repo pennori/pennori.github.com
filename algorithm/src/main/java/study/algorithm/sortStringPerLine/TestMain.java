@@ -47,6 +47,10 @@ public class TestMain {
 		}
 
 		System.out.println(set.toArray()[0]);
+		
+		for (String string : set) {
+			System.out.println(string);
+		}
 
 	}
 
