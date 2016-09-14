@@ -1,7 +1,5 @@
 package study.algorithm.sktechx;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +31,7 @@ public class TaskTwoTest {
 	class Solution {
 
 		public String solution(String S) {
+			
 			String numberOnly = S.replaceAll("/", "").replaceAll("-", "").replaceAll(" ", "");
 			StringBuffer remainBuffer = new StringBuffer(numberOnly);
 			StringBuffer resultBuffer = new StringBuffer();
