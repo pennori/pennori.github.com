@@ -29,7 +29,8 @@ public class Solution {
 					throw new RuntimeException("연도형식이 올바르지 않습니다.");
 				}
 
-				System.out.println(Person.newInstance(name, Integer.parseInt(year)));
+				Person person = Person.newInstance(name, Integer.parseInt(year));
+				System.out.println(person);
 
 				System.out.println("계속 하시겠습니까? (y/n)");
 				String repeatFlag = scanner.nextLine();
