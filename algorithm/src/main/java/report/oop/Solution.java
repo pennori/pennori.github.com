@@ -17,28 +17,7 @@ public class Solution {
 
 		try {
 
-			while (true) {
-
-				System.out.println("이름을 입력해주세요.");
-				String name = scanner.nextLine();
-
-				System.out.println("태어난 연도를 입력해주세요.");
-				String year = scanner.nextLine();
-
-				if (!isNumberOnly(year)) {
-					throw new RuntimeException("연도형식이 올바르지 않습니다.");
-				}
-
-				Person person = Person.newInstance(name, Integer.parseInt(year));
-				System.out.println(person);
-
-				System.out.println("계속 하시겠습니까? (y/n)");
-				String repeatFlag = scanner.nextLine();
-				if ("n".equals(repeatFlag) || 1 < repeatFlag.length()) {
-					break;
-				}
-
-			}
+			validateInputAndPrintOutput(scanner);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -47,6 +26,31 @@ public class Solution {
 			System.out.println("\n프로그램이 종료되었습니다.");
 		}
 
+	}
+
+	private void validateInputAndPrintOutput(Scanner scanner) {
+		while (true) {
+
+			System.out.println("이름을 입력해주세요.");
+			String name = scanner.nextLine();
+
+			System.out.println("태어난 연도를 입력해주세요.");
+			String year = scanner.nextLine();
+
+			if (!isNumberOnly(year)) {
+				throw new RuntimeException("연도형식이 올바르지 않습니다.");
+			}
+
+			Person person = Person.newInstance(name, Integer.parseInt(year));
+			System.out.println(person);
+
+			System.out.println("계속하시겠습니까? (y/n)");
+			String repeatFlag = scanner.nextLine();
+			if ("n".equals(repeatFlag) || 1 < repeatFlag.length()) {
+				break;
+			}
+
+		}
 	}
 
 	private boolean isNumberOnly(String year) {
